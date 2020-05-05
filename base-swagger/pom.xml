@@ -7,6 +7,7 @@
 		<artifactId>app-base</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<groupId>com.liziczh</groupId>
 	<artifactId>base-swagger</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
