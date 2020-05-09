@@ -2,7 +2,7 @@ package com.liziczh.base.common.result;
 
 import java.io.Serializable;
 
-public class BaseResult implements Serializable {
+public class Result<T> implements Serializable {
 	private static final long serialVersionUID = 5629679549953928644L;
 	/**
 	 * 状态码
@@ -13,9 +13,9 @@ public class BaseResult implements Serializable {
 	 */
 	private String message;
 	/**
-	 * 错误信息
+	 * 数据
 	 */
-	private String error;
+	private T data;
 
 	public String getCode() {
 		return code;
@@ -29,10 +29,10 @@ public class BaseResult implements Serializable {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public String getError() {
-		return error;
+	public T getData() {
+		return data;
 	}
-	public void setError(String error) {
-		this.error = error;
+	public void setData(T data) {
+		this.data = data;
 	}
 }
