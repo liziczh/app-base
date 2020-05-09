@@ -14,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig {
+public class Swagger2Config {
 	public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.liziczh";
 	public static final String PRODUCT_ENV = "product";
 	@Value("${spring.profiles.active}")
