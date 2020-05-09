@@ -9,8 +9,12 @@
 	<name>app-base</name>
 	<description>AppBase</description>
 	<modules>
-		<module>base-swagger</module>
+		<module>base-common</module>
+		<module>base-jackson</module>
+		<module>base-aop</module>
+		<module>base-mybatis</module>
 		<module>base-mvc</module>
+		<module>base-swagger</module>
 	</modules>
 	<properties>
 		<!--工程属性-->
