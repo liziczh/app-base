@@ -54,7 +54,7 @@ public class KafkaProducerInit {
 	}
 	@Bean
 	public ProducerFactory<String, String> producerFactory() {
-		return new DefaultKafkaProducerFactory<>(producerConfig.getPropsMap());
+		return new DefaultKafkaProducerFactory<String, String>(producerConfig.getPropsMap());
 	}
 	@Bean
 	public KafkaTemplate<String, String> kafkaTemplate() {
