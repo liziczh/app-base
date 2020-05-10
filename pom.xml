@@ -8,13 +8,13 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>base-common</module>
+		<module>base-swagger</module>
 		<module>base-jackson</module>
+		<module>base-fastjson</module>
 		<module>base-redis</module>
 		<module>base-kafka</module>
 		<module>base-aop</module>
 		<module>base-mybatis</module>
-		<module>base-mvc</module>
-		<module>base-swagger</module>
 	</modules>
 	<!--profile 多环境配置-->
 	<profiles>
@@ -51,8 +51,8 @@
 		<mybatis-spring-boot-starter.version>2.1.2</mybatis-spring-boot-starter.version>
 		<mysql.version>8.0.19</mysql.version>
 		<alibaba.druid.version>1.1.21</alibaba.druid.version>
-		<kafka.client.version>2.0.1</kafka.client.version>
 		<commons-collections.version>4.4</commons-collections.version>
+		<kafka.client.version>2.0.1</kafka.client.version>
 		<spring.sessioin.version>2.2.2.RELEASE</spring.sessioin.version>
 		<fastjson.version>1.2.68</fastjson.version>
 	</properties>
@@ -73,23 +73,17 @@
 				<artifactId>mybatis-spring-boot-starter</artifactId>
 				<version>${mybatis-spring-boot-starter.version}</version>
 			</dependency>
-			<!-- jdbc -->
+			<!-- mysql -->
 			<dependency>
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
 				<version>${mysql.version}</version>
 			</dependency>
-			<!-- database -->
+			<!-- database connection pool -->
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid-spring-boot-starter</artifactId>
 				<version>${alibaba.druid.version}</version>
-			</dependency>
-			<!-- kafka -->
-			<dependency>
-				<groupId>org.apache.kafka</groupId>
-				<artifactId>kafka-clients</artifactId>
-				<version>${kafka.client.version}</version>
 			</dependency>
 			<!-- commons -->
 			<dependency>
@@ -97,11 +91,11 @@
 				<artifactId>commons-collections</artifactId>
 				<version>${commons-collections.version}</version>
 			</dependency>
-			<!-- task -->
+			<!-- kafka -->
 			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-quartz</artifactId>
-				<version>${spring-boot.version}</version>
+				<groupId>org.apache.kafka</groupId>
+				<artifactId>kafka-clients</artifactId>
+				<version>${kafka.client.version}</version>
 			</dependency>
 			<!-- spring session -->
 			<dependency>
@@ -147,18 +141,22 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.1.1</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
+				<version>3.1.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
 			</plugin>
 			<!-- spring-boot -->
 			<plugin>

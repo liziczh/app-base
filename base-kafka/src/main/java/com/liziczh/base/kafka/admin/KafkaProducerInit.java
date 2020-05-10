@@ -43,7 +43,7 @@ public class KafkaProducerInit {
 		if (StringUtils.isNoneBlank(createTopics, numOfPartition, replicationFactor)) {
 			String[] topics = createTopics.split(",");
 			AdminClient client = AdminClient.create(admin.getConfig());
-			List<NewTopic> newTopics = new ArrayList<>();
+			List<NewTopic> newTopics = new ArrayList<NewTopic>();
 			for (String topicName : topics) {
 				logger.info("create topic :" + topicName);
 				newTopics.add(new NewTopic(topicName, Integer.parseInt(numOfPartition), Short.parseShort(replicationFactor)));

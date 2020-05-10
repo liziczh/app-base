@@ -23,7 +23,7 @@ public class KafkaConsumerInit {
 
 	@Bean
 	KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory() {
-		ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
+		ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<String, String>();
 		factory.setConsumerFactory(consumerFactory());
 		factory.setConcurrency(Integer.valueOf(concurrency));
 		factory.setBatchListener(true);
@@ -33,6 +33,6 @@ public class KafkaConsumerInit {
 	}
 	@Bean
 	public ConsumerFactory<String, String> consumerFactory() {
-		return new DefaultKafkaConsumerFactory<>(consumerConfig.getPropsMap());
+		return new DefaultKafkaConsumerFactory<String, String>(consumerConfig.getPropsMap());
 	}
 }

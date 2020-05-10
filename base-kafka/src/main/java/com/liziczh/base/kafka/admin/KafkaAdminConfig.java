@@ -16,7 +16,7 @@ public class KafkaAdminConfig {
 
 	@Bean
 	public KafkaAdmin admin() {
-		Map<String, Object> configs = new HashMap<>();
+		Map<String, Object> configs = new HashMap<String, Object>();
 		configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaHost);
 		KafkaAdmin admin = new KafkaAdmin(configs);
 		admin.setFatalIfBrokerNotAvailable(true);
