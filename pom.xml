@@ -9,6 +9,8 @@
 	<modules>
 		<module>base-common</module>
 		<module>base-jackson</module>
+		<module>base-redis</module>
+		<module>base-kafka</module>
 		<module>base-aop</module>
 		<module>base-mybatis</module>
 		<module>base-mvc</module>
@@ -49,6 +51,7 @@
 		<mybatis-spring-boot-starter.version>2.1.2</mybatis-spring-boot-starter.version>
 		<mysql.version>8.0.19</mysql.version>
 		<alibaba.druid.version>1.1.21</alibaba.druid.version>
+		<kafka.client.version>2.0.1</kafka.client.version>
 		<commons-collections.version>4.4</commons-collections.version>
 		<commons-codec.version>1.14</commons-codec.version>
 		<spring.sessioin.version>2.2.2.RELEASE</spring.sessioin.version>
@@ -81,6 +84,12 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid-spring-boot-starter</artifactId>
 				<version>${alibaba.druid.version}</version>
+			</dependency>
+			<!-- kafka -->
+			<dependency>
+				<groupId>org.apache.kafka</groupId>
+				<artifactId>kafka-clients</artifactId>
+				<version>${kafka.client.version}</version>
 			</dependency>
 			<!-- commons -->
 			<dependency>
