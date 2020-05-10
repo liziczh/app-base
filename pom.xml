@@ -55,6 +55,8 @@
 		<kafka.client.version>2.0.1</kafka.client.version>
 		<spring.sessioin.version>2.2.2.RELEASE</spring.sessioin.version>
 		<fastjson.version>1.2.68</fastjson.version>
+		<!--Base模块版本-->
+		<base.version>0.0.1-SNAPSHOT</base.version>
 	</properties>
 	<!--依赖管理-->
 	<dependencyManagement>
@@ -108,6 +110,47 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>fastjson</artifactId>
 				<version>${fastjson.version}</version>
+			</dependency>
+			<!-- base -->
+			<dependency>
+				<groupId>com.liziczh</groupId>
+				<artifactId>base-common</artifactId>
+				<version>${module.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.liziczh</groupId>
+				<artifactId>base-swagger</artifactId>
+				<version>${module.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.liziczh</groupId>
+				<artifactId>base-jackson</artifactId>
+				<version>${module.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.liziczh</groupId>
+				<artifactId>base-fastjson</artifactId>
+				<version>${module.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.liziczh</groupId>
+				<artifactId>base-redis</artifactId>
+				<version>${module.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.liziczh</groupId>
+				<artifactId>base-kafka</artifactId>
+				<version>${module.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.liziczh</groupId>
+				<artifactId>base-aop</artifactId>
+				<version>${module.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.liziczh</groupId>
+				<artifactId>base-mybatis</artifactId>
+				<version>${module.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

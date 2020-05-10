@@ -3,7 +3,7 @@ package com.liziczh.base.common.result;
 import java.io.Serializable;
 
 public class Result<T> implements Serializable {
-	private static final long serialVersionUID = 5629679549953928644L;
+	private static final long serialVersionUID = -149250316051709651L;
 	/**
 	 * 状态码
 	 */
