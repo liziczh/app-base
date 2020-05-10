@@ -1,18 +1,21 @@
 package com.liziczh.base.common.constant;
 
 public class CommonConstant {
-	public static enum RESULT_CODE {
-		FAILED("0", "操作失败"),
-		SUCCESS("1", "操作成功"),
-		DENIED("3", "拒绝访问");
-		private String code;
+	/**
+	 * 数据状态
+	 */
+	public static enum DATA_STATUS {
+		VALID(0, "正常"),
+		INVALID(1, "失效");
+
+		private Integer code;
 		private String name;
 
-		private RESULT_CODE(String code, String name) {
+		private DATA_STATUS(Integer code, String name) {
 			this.code = code;
 			this.name = name;
 		}
-		public String getCode() {
+		public Integer getCode() {
 			return code;
 		}
 		public String getName() {
