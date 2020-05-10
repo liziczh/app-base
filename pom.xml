@@ -115,42 +115,42 @@
 			<dependency>
 				<groupId>com.liziczh</groupId>
 				<artifactId>base-common</artifactId>
-				<version>${module.version}</version>
+				<version>${base.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.liziczh</groupId>
 				<artifactId>base-swagger</artifactId>
-				<version>${module.version}</version>
+				<version>${base.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.liziczh</groupId>
 				<artifactId>base-jackson</artifactId>
-				<version>${module.version}</version>
+				<version>${base.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.liziczh</groupId>
 				<artifactId>base-fastjson</artifactId>
-				<version>${module.version}</version>
+				<version>${base.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.liziczh</groupId>
 				<artifactId>base-redis</artifactId>
-				<version>${module.version}</version>
+				<version>${base.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.liziczh</groupId>
 				<artifactId>base-kafka</artifactId>
-				<version>${module.version}</version>
+				<version>${base.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.liziczh</groupId>
 				<artifactId>base-aop</artifactId>
-				<version>${module.version}</version>
+				<version>${base.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.liziczh</groupId>
 				<artifactId>base-mybatis</artifactId>
-				<version>${module.version}</version>
+				<version>${base.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
