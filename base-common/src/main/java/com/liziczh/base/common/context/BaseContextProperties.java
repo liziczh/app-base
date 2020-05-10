@@ -1,6 +1,6 @@
 package com.liziczh.base.common.context;
 
-public class BaseContextProperties {
+public abstract class BaseContextProperties {
 	/**
 	 * 每次请求保持一致的属性-static区
 	 */

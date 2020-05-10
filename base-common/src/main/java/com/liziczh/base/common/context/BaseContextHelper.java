@@ -3,8 +3,8 @@ package com.liziczh.base.common.context;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BaseContextHelper extends ContextThreadLocal {
-	public static enum CONTEXT_TYPE {
+public abstract class BaseContextHelper extends ContextThreadLocal {
+	public enum CONTEXT_TYPE {
 		STATIC("STATIC", "静态CONTEXT"),
 		DYNAMIC("DYNAMIC", "动态CONTEXT"),
 		CUSTOM("CUSTOM", "自定义CONTEXT"),
