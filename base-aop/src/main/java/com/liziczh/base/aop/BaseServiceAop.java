@@ -11,7 +11,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.liziczh.base.jackson.util.JsonUtils;
+import com.liziczh.base.jackson.util.JacksonUtils;
 
 public abstract class BaseServiceAop {
 	protected static final Logger logger = LoggerFactory.getLogger(BaseServiceAop.class);
@@ -36,7 +36,7 @@ public abstract class BaseServiceAop {
 		Object[] args = proceedingJoinPoint.getArgs();
 		if (args != null && args.length > 0) {
 			try {
-				methodParams = JsonUtils.toJSONString(args);
+				methodParams = JacksonUtils.toJSONString(args);
 			} catch (Exception e) {
 				logger.error(e.getMessage(), e);
 			}
@@ -54,7 +54,7 @@ public abstract class BaseServiceAop {
 	@AfterReturning(value = "executeService()", returning = "returnValue")
 	public void doAfterReturningAdvice(JoinPoint joinPoint, Object returnValue) {
 		String methodName = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
-		String returnValueJson = returnValue == null ? "null" : JsonUtils.toJSONString(returnValue);
+		String returnValueJson = returnValue == null ? "null" : JacksonUtils.toJSONString(returnValue);
 		logger.debug("[FLAG:{} METHOD:{} PARAMS:{}]", "SR", methodName, returnValueJson);
 	}
 	/**
@@ -68,7 +68,7 @@ public abstract class BaseServiceAop {
 		String methodName = joinPoint.getSignature().getName();
 		Object[] args = joinPoint.getArgs();
 		try {
-			this.sendErrorMessage(exception, className, methodName, JsonUtils.toJSONString(args), new Date());
+			this.sendErrorMessage(exception, className, methodName, JacksonUtils.toJSONString(args), new Date());
 		} catch (Exception e) {
 			logger.debug(e.getMessage(), e);
 		}

@@ -39,7 +39,7 @@ public class AppKafkaListener {
 				logger.error(e.getMessage(), e);
 				try {
 					if (StringUtils.isNotBlank(ExceptionTopicName)) {
-						messageProducer.sendMessage(ExceptionTopicName, record.key(), record.value().toString());
+						messageProducer.sendMessage(ExceptionTopicName, record.key(), record.value());
 					}
 				} catch (Exception sendError) {
 					logger.error(sendError.getMessage(), sendError);

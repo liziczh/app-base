@@ -8,21 +8,13 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.liziczh</groupId>
-	<artifactId>base-jackson</artifactId>
+	<artifactId>base-fastjson</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
-		<!-- Jackson -->
+		<!--fastjson-->
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
 		</dependency>
 		<!--log-->
 		<dependency>

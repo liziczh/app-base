@@ -2,6 +2,7 @@ package com.liziczh.base.jackson.util;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,8 +14,8 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-public class JsonUtils {
-	protected final static Logger logger = LoggerFactory.getLogger(JsonUtils.class);
+public class JacksonUtils {
+	protected final static Logger logger = LoggerFactory.getLogger(JacksonUtils.class);
 	private static final ObjectMapper mapper = new ObjectMapper().setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 
 	/**
