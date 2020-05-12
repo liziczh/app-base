@@ -153,6 +153,11 @@
 				<artifactId>base-mybatis</artifactId>
 				<version>${base.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.liziczh</groupId>
+				<artifactId>base-mvc</artifactId>
+				<version>${base.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
