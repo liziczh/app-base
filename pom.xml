@@ -15,6 +15,7 @@
 		<module>base-kafka</module>
 		<module>base-aop</module>
 		<module>base-mybatis</module>
+		<module>base-mvc</module>
 	</modules>
 	<!--profile 多环境配置-->
 	<profiles>
