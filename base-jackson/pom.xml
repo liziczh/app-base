@@ -11,7 +11,7 @@
 	<artifactId>base-jackson</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<dependencies>
-		<!-- Jackson -->
+		<!-- jackson -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
