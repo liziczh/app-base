@@ -171,7 +171,7 @@
 	<build>
 		<!--项目包名-->
 		<finalName>${project.artifactId}-${project.version}</finalName>
-		<!--项目资源文件-->
+		<!--resource文件-->
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>
@@ -182,9 +182,7 @@
 			<resource>
 				<directory>src/main/resources</directory>
 				<includes>
-					<include>**/application*.yml</include>
-					<include>**/application*.yaml</include>
-					<include>**/application*.properties</include>
+					<include>**/*.*</include>
 				</includes>
 				<filtering>true</filtering>
 			</resource>
