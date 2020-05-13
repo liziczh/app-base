@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.liziczh</groupId>
 	<artifactId>base-parent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
 		<module>base-common</module>
@@ -57,7 +57,7 @@
 		<spring.sessioin.version>2.2.2.RELEASE</spring.sessioin.version>
 		<fastjson.version>1.2.68</fastjson.version>
 		<!--Base模块版本-->
-		<base.version>0.0.1-SNAPSHOT</base.version>
+		<base.version>1.0.0-SNAPSHOT</base.version>
 	</properties>
 	<!--依赖管理-->
 	<dependencyManagement>
@@ -278,14 +278,6 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<version>${spring-boot.version}</version>
-					<executions>
-						<execution>
-							<id>repackage</id>
-							<goals>
-								<goal>repackage</goal>
-							</goals>
-						</execution>
-					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>
