@@ -31,5 +31,10 @@
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 		</dependency>
+		<!-- redis-->
+		<dependency>
+			<groupId>com.liziczh</groupId>
+			<artifactId>base-redis</artifactId>
+		</dependency>
 	</dependencies>
 </project>
