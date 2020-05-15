@@ -57,6 +57,7 @@
 		<kafka.client.version>2.0.1</kafka.client.version>
 		<spring.sessioin.version>2.2.2.RELEASE</spring.sessioin.version>
 		<fastjson.version>1.2.68</fastjson.version>
+		<swagger.version>2.9.2</swagger.version>
 		<!--Base模块版本-->
 		<base.version>1.0.0-SNAPSHOT</base.version>
 	</properties>
@@ -112,6 +113,17 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>fastjson</artifactId>
 				<version>${fastjson.version}</version>
+			</dependency>
+			<!--swagger-->
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${swagger.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${swagger.version}</version>
 			</dependency>
 			<!-- base -->
 			<dependency>
