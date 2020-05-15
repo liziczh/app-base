@@ -10,7 +10,7 @@ public class SpringContextHolder implements ApplicationContextAware {
 	private static ApplicationContext applicationContext;
 	/**
 	 * SpringBootApplication启动时
-	 * @param applicationContext
+	 * @param applicationContext ApplicationContext
 	 * @throws BeansException
 	 */
 	@Override
