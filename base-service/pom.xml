@@ -16,15 +16,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
-		<!--log-->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
 		<!--base-jackson-->
 		<dependency>
 			<groupId>com.liziczh</groupId>
 			<artifactId>base-jackson</artifactId>
+		</dependency>
+		<!--log-->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
 		</dependency>
 	</dependencies>
 </project>

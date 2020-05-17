@@ -129,6 +129,11 @@
 	<groupId>com.liziczh</groupId>
 	<artifactId>base-jackson</artifactId>
 </dependency>
+<!--base-common-->
+<dependency>
+	<groupId>com.liziczh</groupId>
+	<artifactId>base-common</artifactId>
+</dependency>
 <!--log-->
 <dependency>
 	<groupId>org.slf4j</groupId>
@@ -144,22 +149,22 @@
 	<groupId>mysql</groupId>
 	<artifactId>mysql-connector-java</artifactId>
 </dependency>
-<!-- database connection pool -->
+<!--database connection pool-->
 <dependency>
 	<groupId>com.alibaba</groupId>
 	<artifactId>druid-spring-boot-starter</artifactId>
 </dependency>
-<!-- jdbc -->
+<!--jdbc-->
 <dependency>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-jdbc</artifactId>
 </dependency>
-<!-- mybatis -->
+<!--mybatis-->
 <dependency>
 	<groupId>org.mybatis.spring.boot</groupId>
 	<artifactId>mybatis-spring-boot-starter</artifactId>
 </dependency>
-<!-- redis-->
+<!--redis cache-->
 <dependency>
 	<groupId>com.liziczh</groupId>
 	<artifactId>base-redis</artifactId>

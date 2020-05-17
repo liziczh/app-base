@@ -35,15 +35,11 @@ public abstract class BaseServiceAop {
 		String methodParams = null;
 		Object[] args = proceedingJoinPoint.getArgs();
 		if (args != null && args.length > 0) {
-			try {
-				methodParams = JacksonUtils.toJSONString(args);
-			} catch (Exception e) {
-				logger.error(e.getMessage(), e);
-			}
+			methodParams = JacksonUtils.toJSONString(args);
 		}
 		Object obj = proceedingJoinPoint.proceed();
-		long timeConsum = System.currentTimeMillis() - startTime;
-		logger.debug("[FLAG:{} RTIME:{} METHOD:{} PARAMS:{}]", "S", timeConsum, methodName, methodParams);
+		long exeTime = System.currentTimeMillis() - startTime;
+		logger.debug("[FLAG:{} EXETIME:{} METHOD:{} PARAMS:{}]", "SERVICE", exeTime, methodName, methodParams);
 		return obj;
 	}
 	/**
@@ -54,8 +50,8 @@ public abstract class BaseServiceAop {
 	@AfterReturning(value = "executeService()", returning = "returnValue")
 	public void doAfterReturningAdvice(JoinPoint joinPoint, Object returnValue) {
 		String methodName = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
-		String returnValueJson = returnValue == null ? "null" : JacksonUtils.toJSONString(returnValue);
-		logger.debug("[FLAG:{} METHOD:{} PARAMS:{}]", "SR", methodName, returnValueJson);
+		String returnValueJson = (returnValue == null) ? "null" : JacksonUtils.toJSONString(returnValue);
+		logger.debug("[FLAG:{} METHOD:{} PARAMS:{}]", "SERVICE RETURN", methodName, returnValueJson);
 	}
 	/**
 	 * 异常通知
