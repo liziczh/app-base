@@ -27,6 +27,16 @@
 	<groupId>org.apache.commons</groupId>
 	<artifactId>commons-lang3</artifactId>
 </dependency>
+<!--JacksonUtils-->
+<dependency>
+	<groupId>com.liziczh</groupId>
+	<artifactId>base-jackson</artifactId>
+</dependency>
+<!--FastJsonUtils-->
+<dependency>
+	<groupId>com.liziczh</groupId>
+	<artifactId>base-fastjson</artifactId>
+</dependency>
 <!--log-->
 <dependency>
 	<groupId>org.slf4j</groupId>
@@ -116,31 +126,6 @@
 </dependency>
 ```
 
-##### base-aop
-
-```xml
-<!--aop-->
-<dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-aop</artifactId>
-</dependency>
-<!--base-jackson-->
-<dependency>
-	<groupId>com.liziczh</groupId>
-	<artifactId>base-jackson</artifactId>
-</dependency>
-<!--base-common-->
-<dependency>
-	<groupId>com.liziczh</groupId>
-	<artifactId>base-common</artifactId>
-</dependency>
-<!--log-->
-<dependency>
-	<groupId>org.slf4j</groupId>
-	<artifactId>slf4j-api</artifactId>
-</dependency>
-```
-
 ##### base-mybatis
 
 ```xml
@@ -179,10 +164,10 @@
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-aop</artifactId>
 </dependency>
-<!--base-jackson-->
+<!--base-common-->
 <dependency>
 	<groupId>com.liziczh</groupId>
-	<artifactId>base-jackson</artifactId>
+	<artifactId>base-common</artifactId>
 </dependency>
 <!--log-->
 <dependency>
@@ -203,11 +188,6 @@
 <dependency>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-aop</artifactId>
-</dependency>
-<!--base-jackson-->
-<dependency>
-	<groupId>com.liziczh</groupId>
-	<artifactId>base-jackson</artifactId>
 </dependency>
 <!--base-common-->
 <dependency>
