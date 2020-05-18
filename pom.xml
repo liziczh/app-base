@@ -13,8 +13,8 @@
 		<module>base-fastjson</module>
 		<module>base-redis</module>
 		<module>base-kafka</module>
-		<module>base-aop</module>
 		<module>base-mybatis</module>
+		<module>base-service</module>
 		<module>base-mvc</module>
 	</modules>
 	<!--profile 多环境配置-->
@@ -157,12 +157,12 @@
 			</dependency>
 			<dependency>
 				<groupId>com.liziczh</groupId>
-				<artifactId>base-aop</artifactId>
+				<artifactId>base-mybatis</artifactId>
 				<version>${base.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.liziczh</groupId>
-				<artifactId>base-mybatis</artifactId>
+				<artifactId>base-service</artifactId>
 				<version>${base.version}</version>
 			</dependency>
 			<dependency>

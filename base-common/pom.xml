@@ -21,6 +21,16 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
+		<!--JacksonUtils-->
+		<dependency>
+			<groupId>com.liziczh</groupId>
+			<artifactId>base-jackson</artifactId>
+		</dependency>
+		<!--FastJsonUtils-->
+		<dependency>
+			<groupId>com.liziczh</groupId>
+			<artifactId>base-fastjson</artifactId>
+		</dependency>
 		<!--log-->
 		<dependency>
 			<groupId>org.slf4j</groupId>
