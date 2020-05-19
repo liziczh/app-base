@@ -1,4 +1,4 @@
-package com.liziczh.base.mvc.aop;
+package com.liziczh.base.common.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;

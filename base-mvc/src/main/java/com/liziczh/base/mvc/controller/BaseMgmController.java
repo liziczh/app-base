@@ -11,7 +11,7 @@ import com.liziczh.base.common.result.ResultBuilder;
 import com.liziczh.base.common.service.BaseMgmService;
 
 @RestController
-public abstract class BaseMgmController<T extends BaseEntity, K> extends BaseController {
+public abstract class BaseMgmController<T extends BaseEntity, K> {
 	public abstract String getIndex() throws Exception;
 	public abstract BaseMgmService<T, K> getService() throws Exception;
 	@RequestMapping(value = "index", method = RequestMethod.GET)

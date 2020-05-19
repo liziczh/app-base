@@ -1,4 +1,4 @@
-package com.liziczh.base.service.aop;
+package com.liziczh.base.common.aop;
 
 import java.util.Date;
 
