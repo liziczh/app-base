@@ -10,8 +10,8 @@ import org.springframework.cache.annotation.EnableCaching;
 @MapperScan("com.liziczh.**.mapper")
 @EntityScan(basePackages = "com.liziczh.**.entity")
 @EnableCaching
-public class BaseMybatisApplication {
+public class MybatisApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(BaseMybatisApplication.class, args);
+		SpringApplication.run(MybatisApplication.class, args);
 	}
 }
