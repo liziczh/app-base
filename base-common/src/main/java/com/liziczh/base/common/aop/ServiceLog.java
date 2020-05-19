@@ -1,4 +1,4 @@
-package com.liziczh.base.mvc.aop;
+package com.liziczh.base.common.aop;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD })
 @Documented
-public @interface WebLog {
+public @interface ServiceLog {
 	String description() default "";
 }
