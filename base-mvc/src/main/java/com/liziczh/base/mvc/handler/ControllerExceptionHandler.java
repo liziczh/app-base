@@ -15,8 +15,10 @@ import com.liziczh.base.common.exception.BizErrorException;
 import com.liziczh.base.common.exception.BizFatalException;
 import com.liziczh.base.common.exception.BizInfoException;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ControllerExceptionHandler {
-	protected static final Logger logger = LoggerFactory.getLogger(ControllerExceptionHandler.class);
 	public final String DEFAULT_MESSAGE = "系统错误";
 
 	@ExceptionHandler(BizInfoException.class)
@@ -29,14 +31,14 @@ public class ControllerExceptionHandler {
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
 	public Map<String, String> handleBizErrorException(BizErrorException e) {
-		logger.error(e.getMessage(), e.getCause() != null ? e.getCause() : e);
+		log.error(e.getMessage(), e.getCause() != null ? e.getCause() : e);
 		return buildErrorMessage(DEFAULT_MESSAGE);
 	}
 	@ExceptionHandler(BizFatalException.class)
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
 	public Map<String, String> handleBizFatalException(BizFatalException ex) {
-		logger.error(ex.getMessage(), ex.getCause() != null ? ex.getCause() : ex);
+		log.error(ex.getMessage(), ex.getCause() != null ? ex.getCause() : ex);
 		return buildErrorMessage(DEFAULT_MESSAGE);
 	}
 	/**

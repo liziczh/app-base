@@ -7,15 +7,18 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import com.liziczh.base.jackson.util.JacksonUtils;
 
-public abstract class BaseServiceAop {
-	protected static final Logger logger = LoggerFactory.getLogger(BaseServiceAop.class);
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
+@Component
+@Aspect
+public abstract class BaseServiceAop {
 	@Pointcut("execution(public * com.liziczh..*.service.*.*(..))")
 	public void executeService() {
 	}
@@ -39,7 +42,7 @@ public abstract class BaseServiceAop {
 		}
 		Object obj = proceedingJoinPoint.proceed();
 		long exeTime = System.currentTimeMillis() - startTime;
-		logger.debug("[FLAG:{} EXETIME:{} METHOD:{} PARAMS:{}]", "SERVICE", exeTime, methodName, methodParams);
+		log.debug("[FLAG:{} EXETIME:{} METHOD:{} PARAMS:{}]", "SERVICE", exeTime, methodName, methodParams);
 		return obj;
 	}
 	/**
@@ -51,7 +54,7 @@ public abstract class BaseServiceAop {
 	public void doAfterReturningAdvice(JoinPoint joinPoint, Object returnValue) {
 		String methodName = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
 		String returnValueJson = (returnValue == null) ? "null" : JacksonUtils.toJSONString(returnValue);
-		logger.debug("[FLAG:{} METHOD:{} PARAMS:{}]", "SERVICE RETURN", methodName, returnValueJson);
+		log.debug("[FLAG:{} METHOD:{} PARAMS:{}]", "SERVICE RETURN", methodName, returnValueJson);
 	}
 	/**
 	 * 异常通知
@@ -66,7 +69,7 @@ public abstract class BaseServiceAop {
 		try {
 			this.sendErrorMessage(exception, className, methodName, JacksonUtils.toJSONString(args), new Date());
 		} catch (Exception e) {
-			logger.debug(e.getMessage(), e);
+			log.debug(e.getMessage(), e);
 		}
 	}
 	/**
