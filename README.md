@@ -2,12 +2,12 @@
 #### Module
 
 - base-common：BaseBean
-- base-jackson：JacksonUtils
-- base-fastjson：FastJsonUtils
+- common-jackson：JacksonUtils
+- common-fastjson：FastJsonUtils
 - base-swagger：Swagger2Config
 - base-redis：Redis
 - base-kafka：Kafka
-- base-aop：AOP
+- base-rest：RestTemplate
 - base-mybatis：DAO
 - base-service：Service
 - base-mvc：Web
@@ -17,16 +17,6 @@
 基类定义，通用常量，自定义异常，工具类
 
 ```xml
-<!--lombok-->
-<dependency>
-	<groupId>org.projectlombok</groupId>
-	<artifactId>lombok</artifactId>
-</dependency>
-<!--utils-->
-<dependency>
-	<groupId>org.apache.commons</groupId>
-	<artifactId>commons-lang3</artifactId>
-</dependency>
 <!--JacksonUtils-->
 <dependency>
 	<groupId>com.liziczh</groupId>
@@ -37,6 +27,25 @@
 	<groupId>com.liziczh</groupId>
 	<artifactId>base-fastjson</artifactId>
 </dependency>
+<!--aop-->
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+<!--utils-->
+<dependency>
+	<groupId>org.apache.commons</groupId>
+	<artifactId>commons-lang3</artifactId>
+</dependency>
+<dependency>
+	<groupId>commons-collections</groupId>
+	<artifactId>commons-collections</artifactId>
+</dependency>
+<!--lombok-->
+<dependency>
+	<groupId>org.projectlombok</groupId>
+	<artifactId>lombok</artifactId>
+</dependency>
 <!--log-->
 <dependency>
 	<groupId>org.slf4j</groupId>
@@ -44,7 +53,7 @@
 </dependency>
 ```
 
-##### base-jackson
+##### common-jackson
 
 ```xml
 <!-- jackson -->
@@ -67,7 +76,7 @@
 </dependency>
 ```
 
-##### base-fastjson
+##### common-fastjson
 
 ```xml
 <!--fastjson-->
@@ -106,6 +115,16 @@
 </dependency>
 ```
 
+##### base-rest
+
+```xml
+<!--web-->
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+
 ##### base-kafka
 
 ```xml
@@ -123,16 +142,6 @@
 <dependency>
 	<groupId>org.slf4j</groupId>
 	<artifactId>slf4j-api</artifactId>
-</dependency>
-```
-
-##### base-rest
-
-```xml
-<!--web-->
-<dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-web</artifactId>
 </dependency>
 ```
 
@@ -169,20 +178,10 @@
 ##### base-service
 
 ```xml
-<!--aop-->
-<dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-aop</artifactId>
-</dependency>
 <!--base-common-->
 <dependency>
 	<groupId>com.liziczh</groupId>
 	<artifactId>base-common</artifactId>
-</dependency>
-<!--log-->
-<dependency>
-	<groupId>org.slf4j</groupId>
-	<artifactId>slf4j-api</artifactId>
 </dependency>
 ```
 
@@ -194,19 +193,9 @@
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-web</artifactId>
 </dependency>
-<!--aop-->
-<dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-aop</artifactId>
-</dependency>
 <!--base-common-->
 <dependency>
 	<groupId>com.liziczh</groupId>
 	<artifactId>base-common</artifactId>
-</dependency>
-<!--log-->
-<dependency>
-	<groupId>org.slf4j</groupId>
-	<artifactId>slf4j-api</artifactId>
 </dependency>
 ```
