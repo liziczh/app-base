@@ -4,7 +4,6 @@ import java.lang.reflect.Method;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.liziczh.base.common.aop.WebLog;
 import com.liziczh.common.jackson.util.JacksonUtils;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Aspect
 public class WebLogAop {
-	@Pointcut("@annotation(com.liziczh.base.common.aop.WebLog)")
+	@Pointcut("@annotation(com.liziczh.base.mvc.aop.WebLog)")
 	public void webLogController() {
 	}
 	/**

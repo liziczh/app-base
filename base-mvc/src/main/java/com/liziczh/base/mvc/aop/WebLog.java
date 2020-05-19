@@ -1,4 +1,4 @@
-package com.liziczh.base.common.aop;
+package com.liziczh.base.mvc.aop;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

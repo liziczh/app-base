@@ -1,13 +1,11 @@
 package com.liziczh.base.common.aop;
 
 import java.lang.reflect.Method;
-import java.util.Date;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -21,12 +19,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 @Aspect
-public abstract class BaseServiceAop {
-	@Pointcut("@annotation(ServiceLog)")
+public class ServiceLogAop {
+	/**
+	 * 切入点
+	 */
+	@Pointcut("@annotation(com.liziczh.base.common.aop.ServiceLog)")
 	public void executeService() {
-	}
-	@Pointcut("execution(public * com.liziczh..*.*(..))")
-	public void serviceException() {
 	}
 	/**
 	 * 前置通知
@@ -88,22 +86,6 @@ public abstract class BaseServiceAop {
 		log.info("Return Value   : {}", JacksonUtils.toJSONString(returnValueJson));
 	}
 	/**
-	 * 异常通知
-	 * @param joinPoint 切入点
-	 * @param exception 异常
-	 */
-	@AfterThrowing(value = "serviceException()", throwing = "exception")
-	public void handleThrowing(JoinPoint joinPoint, Exception exception) {
-		String className = joinPoint.getTarget().getClass().getName();
-		String methodName = joinPoint.getSignature().getName();
-		Object[] args = joinPoint.getArgs();
-		try {
-			this.sendErrorMessage(exception, className, methodName, JacksonUtils.toJSONString(args), new Date());
-		} catch (Exception e) {
-			log.debug(e.getMessage(), e);
-		}
-	}
-	/**
 	 * 获取注解descption信息
 	 * @param joinPoint 切点
 	 * @return descption
@@ -120,20 +102,11 @@ public abstract class BaseServiceAop {
 			if (method.getName().equals(methodName)) {
 				Class[] clazzs = method.getParameterTypes();
 				if (clazzs.length == arguments.length) {
-					description.append(method.getAnnotation(WebLog.class).description());
+					description.append(method.getAnnotation(ServiceLog.class).description());
 					break;
 				}
 			}
 		}
 		return description.toString();
 	}
-	/**
-	 * 发送异常邮件
-	 * @param exception 异常
-	 * @param className 类名
-	 * @param methodName 方法名
-	 * @param methodParams 方法参数
-	 * @param occurTime 异常发生时间
-	 */
-	protected abstract void sendErrorMessage(Exception exception, String className, String methodName, String methodParams, Date occurTime);
 }
