@@ -14,12 +14,12 @@
 		<!--JacksonUtils-->
 		<dependency>
 			<groupId>com.liziczh</groupId>
-			<artifactId>base-jackson</artifactId>
+			<artifactId>common-jackson</artifactId>
 		</dependency>
 		<!--FastJsonUtils-->
 		<dependency>
 			<groupId>com.liziczh</groupId>
-			<artifactId>base-fastjson</artifactId>
+			<artifactId>common-fastjson</artifactId>
 		</dependency>
 		<!--aop-->
 		<dependency>

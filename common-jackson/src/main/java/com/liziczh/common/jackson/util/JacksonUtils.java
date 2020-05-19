@@ -1,8 +1,7 @@
-package com.liziczh.base.jackson.util;
+package com.liziczh.common.jackson.util;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 

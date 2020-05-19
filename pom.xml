@@ -8,13 +8,13 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>base-common</module>
+		<module>common-jackson</module>
+		<module>common-fastjson</module>
 		<module>base-swagger</module>
-		<module>base-jackson</module>
-		<module>base-fastjson</module>
 		<module>base-redis</module>
-		<module>base-kafka</module>
 		<module>base-rest</module>
 		<module>base-mybatis</module>
+		<module>base-kafka</module>
 		<module>base-service</module>
 		<module>base-mvc</module>
 	</modules>
@@ -139,27 +139,22 @@
 			</dependency>
 			<dependency>
 				<groupId>com.liziczh</groupId>
+				<artifactId>common-jackson</artifactId>
+				<version>${base.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.liziczh</groupId>
+				<artifactId>common-fastjson</artifactId>
+				<version>${base.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.liziczh</groupId>
 				<artifactId>base-swagger</artifactId>
 				<version>${base.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.liziczh</groupId>
-				<artifactId>base-jackson</artifactId>
-				<version>${base.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.liziczh</groupId>
-				<artifactId>base-fastjson</artifactId>
-				<version>${base.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.liziczh</groupId>
 				<artifactId>base-redis</artifactId>
-				<version>${base.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.liziczh</groupId>
-				<artifactId>base-kafka</artifactId>
 				<version>${base.version}</version>
 			</dependency>
 			<dependency>
@@ -170,6 +165,11 @@
 			<dependency>
 				<groupId>com.liziczh</groupId>
 				<artifactId>base-mybatis</artifactId>
+				<version>${base.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.liziczh</groupId>
+				<artifactId>base-kafka</artifactId>
 				<version>${base.version}</version>
 			</dependency>
 			<dependency>

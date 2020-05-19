@@ -8,7 +8,7 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<groupId>com.liziczh</groupId>
-	<artifactId>base-fastjson</artifactId>
+	<artifactId>common-fastjson</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<dependencies>
 		<!--fastjson-->
