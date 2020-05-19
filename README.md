@@ -126,6 +126,16 @@
 </dependency>
 ```
 
+##### base-rest
+
+```xml
+<!--web-->
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+
 ##### base-mybatis
 
 ```xml
