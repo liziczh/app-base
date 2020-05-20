@@ -1,5 +1,8 @@
 package com.liziczh.base.common.service;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public interface BaseMgmService<T, K> {
 	/**
 	 * 新增数据

@@ -1,7 +1,6 @@
 package com.liziczh.base.common.result;
 
 public class ResultBuilder<T> {
-
 	public Result<T> success() {
 		Result<T> result = new Result<T>();
 		result.setCode(ResultConstant.RESULT_CODE.SUCCESS.getCode());
@@ -23,7 +22,7 @@ public class ResultBuilder<T> {
 		result.setData(data);
 		return result;
 	}
-	public Result<T> build(String code, String message, T data){
+	public Result<T> build(String code, String message, T data) {
 		Result<T> result = new Result<T>();
 		result.setCode(code);
 		result.setMessage(message);
