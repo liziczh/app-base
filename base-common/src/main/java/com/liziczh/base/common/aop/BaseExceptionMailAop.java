@@ -6,6 +6,8 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
 import com.liziczh.common.jackson.util.JacksonUtils;
@@ -16,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Aspect
 public abstract class BaseExceptionMailAop {
-	@Pointcut("@annotation(ExceptionMail)")
+	@Pointcut("execution(public * com.liziczh..*.*(..))")
 	public void serviceException() {
 	}
 	/**
@@ -26,6 +28,12 @@ public abstract class BaseExceptionMailAop {
 	 */
 	@AfterThrowing(value = "serviceException()", throwing = "exception")
 	public void handleThrowing(JoinPoint joinPoint, Exception exception) {
+		// ExceptionMailIgnore
+		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+		ExceptionMailIgnore exceptionMailIgnore = AnnotationUtils.findAnnotation(methodSignature.getMethod(), ExceptionMailIgnore.class);
+		if (exceptionMailIgnore != null) {
+			return;
+		}
 		String className = joinPoint.getTarget().getClass().getName();
 		String methodName = joinPoint.getSignature().getName();
 		Object[] args = joinPoint.getArgs();

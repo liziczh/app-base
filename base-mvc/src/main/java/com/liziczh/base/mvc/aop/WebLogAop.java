@@ -1,7 +1,5 @@
 package com.liziczh.base.mvc.aop;
 
-import java.lang.reflect.Method;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.aspectj.lang.JoinPoint;
@@ -12,6 +10,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -24,28 +24,29 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Aspect
 public class WebLogAop {
-	@Pointcut("@annotation(com.liziczh.base.mvc.aop.WebLog)")
+	@Pointcut("execution(public * com.liziczh..*.controller.*.*(..))")
 	public void webLogController() {
 	}
 	/**
 	 * 前置通知
 	 * @param joinPoint 切点
-	 * @throws Throwable
 	 */
 	@Before("webLogController()")
-	public void doBefore(JoinPoint joinPoint) throws Throwable {
+	public void doBefore(JoinPoint joinPoint) {
+		// WebLogIgnore
+		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+		WebLogIgnore webLogIgnore = AnnotationUtils.findAnnotation(methodSignature.getMethod(), WebLogIgnore.class);
+		if (webLogIgnore != null) {
+			return;
+		}
 		// 开始打印请求日志
 		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 		assert attributes != null;
 		HttpServletRequest request = attributes.getRequest();
-		// 获取 @WebLog 注解的描述信息
-		String methodDescription = getLogDescription(joinPoint);
 		// 打印请求相关参数
 		log.info("========================================== Start ==========================================");
 		// 打印请求 url
 		log.info("URL            : {}", request.getRequestURL().toString());
-		// 打印描述信息
-		log.info("Description    : {}", methodDescription);
 		// 打印 Http method
 		log.info("HTTP Method    : {}", request.getMethod());
 		// 打印请求的 IP
@@ -59,6 +60,13 @@ public class WebLogAop {
 	 */
 	@Around("webLogController()")
 	public Object doAroundAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+		// WebLogIgnore
+		MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
+		WebLogIgnore webLogIgnore = AnnotationUtils.findAnnotation(methodSignature.getMethod(), WebLogIgnore.class);
+		if (webLogIgnore != null) {
+			// 执行方法
+			return proceedingJoinPoint.proceed();
+		}
 		long startTime = System.currentTimeMillis();
 		// 打印调用 controller 的全路径以及执行方法
 		log.info("Class Method   : {}.{}", proceedingJoinPoint.getSignature().getDeclaringTypeName(), proceedingJoinPoint.getSignature().getName());
@@ -81,7 +89,13 @@ public class WebLogAop {
 	 * 后置通知
 	 */
 	@After("webLogController()")
-	public void doAfter() {
+	public void doAfter(JoinPoint joinPoint) {
+		// WebLogIgnore
+		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+		WebLogIgnore webLogIgnore = AnnotationUtils.findAnnotation(methodSignature.getMethod(), WebLogIgnore.class);
+		if (webLogIgnore != null) {
+			return;
+		}
 		// 接口结束
 		log.info("=========================================== End ===========================================" + System.lineSeparator());
 	}
@@ -92,34 +106,16 @@ public class WebLogAop {
 	 */
 	@AfterReturning(value = "webLogController()", returning = "returnValue")
 	public void doAfterReturningAdvice(JoinPoint joinPoint, Object returnValue) {
+		// WebLogIgnore
+		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+		WebLogIgnore webLogIgnore = AnnotationUtils.findAnnotation(methodSignature.getMethod(), WebLogIgnore.class);
+		if (webLogIgnore != null) {
+			return;
+		}
 		// 打印调用 controller 的全路径以及执行方法
 		log.info("Class Method   : {}.{}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
 		// 打印方法返回值
 		String returnValueJson = (returnValue == null) ? "null" : JacksonUtils.toJSONString(returnValue);
 		log.info("Return Value   : {}", JacksonUtils.toJSONString(returnValueJson));
-	}
-	/**
-	 * 获取注解descption信息
-	 * @param joinPoint 切点
-	 * @return descption
-	 * @throws Exception
-	 */
-	private String getLogDescription(JoinPoint joinPoint) throws Exception {
-		String targetName = joinPoint.getTarget().getClass().getName();
-		String methodName = joinPoint.getSignature().getName();
-		Object[] arguments = joinPoint.getArgs();
-		Class targetClass = Class.forName(targetName);
-		Method[] methods = targetClass.getMethods();
-		StringBuilder description = new StringBuilder("");
-		for (Method method : methods) {
-			if (method.getName().equals(methodName)) {
-				Class[] clazzs = method.getParameterTypes();
-				if (clazzs.length == arguments.length) {
-					description.append(method.getAnnotation(WebLog.class).description());
-					break;
-				}
-			}
-		}
-		return description.toString();
 	}
 }

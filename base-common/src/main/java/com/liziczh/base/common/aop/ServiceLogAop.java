@@ -1,7 +1,5 @@
 package com.liziczh.base.common.aop;
 
-import java.lang.reflect.Method;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -10,6 +8,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
 import com.liziczh.common.jackson.util.JacksonUtils;
@@ -23,23 +23,24 @@ public class ServiceLogAop {
 	/**
 	 * 切入点
 	 */
-	@Pointcut("@annotation(com.liziczh.base.common.aop.ServiceLog)")
+	@Pointcut("execution(public * com.liziczh..*.service.*.*(..))")
 	public void executeService() {
 	}
 	/**
 	 * 前置通知
 	 * @param joinPoint 切点
-	 * @throws Throwable
 	 */
 	@Before("executeService()")
-	public void doBefore(JoinPoint joinPoint) throws Throwable {
+	public void doBefore(JoinPoint joinPoint) {
+		// ServiceLogIgnore
+		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+		ServiceLogIgnore serviceLogIgnore = AnnotationUtils.findAnnotation(methodSignature.getMethod(), ServiceLogIgnore.class);
+		if (serviceLogIgnore != null) {
+			return;
+		}
 		// 开始打印请求日志
-		// 获取 @ServiceLog 注解的描述信息
-		String methodDescription = getLogDescription(joinPoint);
 		// 打印请求相关参数
 		log.info("========================================== Start ==========================================");
-		// 打印描述信息
-		log.info("Description    : {}", methodDescription);
 	}
 	/**
 	 * 环绕通知
@@ -49,6 +50,12 @@ public class ServiceLogAop {
 	 */
 	@Around("executeService()")
 	public Object doAroundAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+		// ServiceLogIgnore
+		MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
+		ServiceLogIgnore serviceLogIgnore = AnnotationUtils.findAnnotation(methodSignature.getMethod(), ServiceLogIgnore.class);
+		if (serviceLogIgnore != null) {
+			return proceedingJoinPoint.proceed();
+		}
 		long startTime = System.currentTimeMillis();
 		// 打印调用 controller 的全路径以及执行方法
 		log.info("Class Method   : {}.{}", proceedingJoinPoint.getSignature().getDeclaringTypeName(), proceedingJoinPoint.getSignature().getName());
@@ -68,7 +75,13 @@ public class ServiceLogAop {
 		return result;
 	}
 	@After("executeService()")
-	public void doAfter() throws Throwable {
+	public void doAfter(JoinPoint joinPoint) throws Throwable {
+		// ServiceLogIgnore
+		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+		ServiceLogIgnore serviceLogIgnore = AnnotationUtils.findAnnotation(methodSignature.getMethod(), ServiceLogIgnore.class);
+		if (serviceLogIgnore != null) {
+			return;
+		}
 		// 接口结束后换行，方便分割查看
 		log.info("=========================================== End ===========================================" + System.lineSeparator());
 	}
@@ -79,34 +92,16 @@ public class ServiceLogAop {
 	 */
 	@AfterReturning(value = "executeService()", returning = "returnValue")
 	public void doAfterReturningAdvice(JoinPoint joinPoint, Object returnValue) {
+		// ServiceLogIgnore
+		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+		ServiceLogIgnore serviceLogIgnore = AnnotationUtils.findAnnotation(methodSignature.getMethod(), ServiceLogIgnore.class);
+		if (serviceLogIgnore != null) {
+			return;
+		}
 		// 打印调用 controller 的全路径以及执行方法
 		log.info("Class Method   : {}.{}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
 		// 打印方法返回值
 		String returnValueJson = (returnValue == null) ? "null" : JacksonUtils.toJSONString(returnValue);
 		log.info("Return Value   : {}", JacksonUtils.toJSONString(returnValueJson));
-	}
-	/**
-	 * 获取注解descption信息
-	 * @param joinPoint 切点
-	 * @return descption
-	 * @throws Exception
-	 */
-	private String getLogDescription(JoinPoint joinPoint) throws Exception {
-		String targetName = joinPoint.getTarget().getClass().getName();
-		String methodName = joinPoint.getSignature().getName();
-		Object[] arguments = joinPoint.getArgs();
-		Class targetClass = Class.forName(targetName);
-		Method[] methods = targetClass.getMethods();
-		StringBuilder description = new StringBuilder("");
-		for (Method method : methods) {
-			if (method.getName().equals(methodName)) {
-				Class[] clazzs = method.getParameterTypes();
-				if (clazzs.length == arguments.length) {
-					description.append(method.getAnnotation(ServiceLog.class).description());
-					break;
-				}
-			}
-		}
-		return description.toString();
 	}
 }
