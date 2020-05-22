@@ -11,20 +11,10 @@
 	<artifactId>base-common</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<dependencies>
-		<!--JacksonUtils-->
+		<!--lombok-->
 		<dependency>
-			<groupId>com.liziczh</groupId>
-			<artifactId>common-jackson</artifactId>
-		</dependency>
-		<!--FastJsonUtils-->
-		<dependency>
-			<groupId>com.liziczh</groupId>
-			<artifactId>common-fastjson</artifactId>
-		</dependency>
-		<!--aop-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
 		</dependency>
 		<!--utils-->
 		<dependency>
@@ -35,10 +25,28 @@
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 		</dependency>
-		<!--lombok-->
+		<!--jackson-->
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<!--fastjson-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+		</dependency>
+		<!--aop-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 		<!--log-->
 		<dependency>

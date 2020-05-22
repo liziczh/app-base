@@ -1,4 +1,4 @@
-package com.liziczh.common.fastjson.util;
+package com.liziczh.base.common.util;
 
 import java.util.List;
 import java.util.Map;

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.liziczh.common.jackson.util.JacksonUtils;
+import com.liziczh.base.common.util.JacksonUtils;
 
 import lombok.extern.slf4j.Slf4j;
 

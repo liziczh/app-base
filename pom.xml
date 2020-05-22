@@ -8,8 +8,6 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>base-common</module>
-		<module>common-jackson</module>
-		<module>common-fastjson</module>
 		<module>base-swagger</module>
 		<module>base-redis</module>
 		<module>base-rest</module>
@@ -135,16 +133,6 @@
 			<dependency>
 				<groupId>com.liziczh</groupId>
 				<artifactId>base-common</artifactId>
-				<version>${base.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.liziczh</groupId>
-				<artifactId>common-jackson</artifactId>
-				<version>${base.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.liziczh</groupId>
-				<artifactId>common-fastjson</artifactId>
 				<version>${base.version}</version>
 			</dependency>
 			<dependency>

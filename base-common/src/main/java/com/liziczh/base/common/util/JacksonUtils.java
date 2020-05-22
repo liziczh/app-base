@@ -1,4 +1,4 @@
-package com.liziczh.common.jackson.util;
+package com.liziczh.base.common.util;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
