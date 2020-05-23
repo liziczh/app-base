@@ -48,9 +48,10 @@
 		<jdk.version>1.8</jdk.version>
 		<!--依赖属性-->
 		<spring-boot.version>2.2.6.RELEASE</spring-boot.version>
-		<mybatis-spring-boot-starter.version>2.1.2</mybatis-spring-boot-starter.version>
 		<mysql.version>8.0.19</mysql.version>
 		<alibaba.druid.version>1.1.20</alibaba.druid.version>
+		<mybatis-spring-boot-starter.version>2.1.2</mybatis-spring-boot-starter.version>
+		<pagehelper-spring-boot-starter.verson>1.2.12</pagehelper-spring-boot-starter.verson>
 		<commons-collections.version>3.2.2</commons-collections.version>
 		<fastjson.version>1.2.68</fastjson.version>
 		<swagger.version>2.9.2</swagger.version>
@@ -71,12 +72,6 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<!-- mybatis -->
-			<dependency>
-				<groupId>org.mybatis.spring.boot</groupId>
-				<artifactId>mybatis-spring-boot-starter</artifactId>
-				<version>${mybatis-spring-boot-starter.version}</version>
-			</dependency>
 			<!-- mysql -->
 			<dependency>
 				<groupId>mysql</groupId>
@@ -88,6 +83,17 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid-spring-boot-starter</artifactId>
 				<version>${alibaba.druid.version}</version>
+			</dependency>
+			<!-- mybatis -->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis-spring-boot-starter.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.pagehelper</groupId>
+				<artifactId>pagehelper-spring-boot-starter</artifactId>
+				<version>${pagehelper-spring-boot-starter.verson}</version>
 			</dependency>
 			<!-- commons -->
 			<dependency>
