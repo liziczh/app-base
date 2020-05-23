@@ -36,5 +36,10 @@
 			<groupId>com.liziczh</groupId>
 			<artifactId>base-redis</artifactId>
 		</dependency>
+		<!--pagehelper-->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+		</dependency>
 	</dependencies>
 </project>
