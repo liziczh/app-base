@@ -55,6 +55,7 @@
 		<commons-collections.version>3.2.2</commons-collections.version>
 		<fastjson.version>1.2.68</fastjson.version>
 		<swagger.version>2.9.2</swagger.version>
+		<swagger-bootstrap-ui.version>1.9.6</swagger-bootstrap-ui.version>
 		<kafka.client.version>2.3.1</kafka.client.version>
 		<spring-kafka.version>2.3.7.RELEASE</spring-kafka.version>
 		<spring.sessioin.version>2.2.2.RELEASE</spring.sessioin.version>
@@ -118,6 +119,11 @@
 				<groupId>io.springfox</groupId>
 				<artifactId>springfox-swagger-ui</artifactId>
 				<version>${swagger.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.xiaoymin</groupId>
+				<artifactId>swagger-bootstrap-ui</artifactId>
+				<version>${swagger-bootstrap-ui.version}</version>
 			</dependency>
 			<!-- kafka -->
 			<dependency>
