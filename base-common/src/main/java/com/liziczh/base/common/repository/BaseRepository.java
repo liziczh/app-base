@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 public interface BaseRepository<E, PK, C> {
 	/**
 	 * 条件查询
-	 * @return 实体
+	 * @param condition 条件
+	 * @return 数据集合
 	 */
 	List<E> selectByCondition(C condition);
 	/**
