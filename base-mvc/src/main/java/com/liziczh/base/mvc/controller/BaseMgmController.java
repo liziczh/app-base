@@ -21,16 +21,6 @@ public abstract class BaseMgmController<T extends BaseEntity, K, C> {
 	public String index() throws Exception {
 		return getIndex();
 	}
-	@RequestMapping(value = "/selectByCondition", method = RequestMethod.POST)
-	public Result<List<T>> selectByCondition(@RequestBody C condition) throws Exception {
-		List<T> list = getService().selectByCondition(condition);
-		return new ResultBuilder<List<T>>().complete(list);
-	}
-	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
-	public Result<List<T>> getAll() throws Exception {
-		List<T> list = getService().getAll();
-		return new ResultBuilder<List<T>>().complete(list);
-	}
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public Result<String> add(T entity) throws Exception {
 		getService().addItem(entity);
