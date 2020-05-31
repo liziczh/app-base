@@ -1,14 +1,18 @@
 package com.liziczh.base.common.repository;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BaseRepository<E, PK extends Serializable> {
+public interface BaseRepository<E, PK, C> {
 	/**
-	 * 查询 By ID
+	 * 条件查询
+	 * @return 实体
+	 */
+	List<E> selectByCondition(C condition);
+	/**
+	 * 查询全部
 	 * @return 实体
 	 */
 	List<E> getAll();
