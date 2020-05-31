@@ -3,6 +3,7 @@ package com.liziczh.base.mvc.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,8 +21,8 @@ public abstract class BaseMgmController<T extends BaseEntity, K, C> {
 	public String index() throws Exception {
 		return getIndex();
 	}
-	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-	public Result<List<T>> selectByCondition(@PathVariable C condition) throws Exception {
+	@RequestMapping(value = "/selectByCondition", method = RequestMethod.GET)
+	public Result<List<T>> selectByCondition(@RequestBody C condition) throws Exception {
 		List<T> list = getService().selectByCondition(condition);
 		return new ResultBuilder<List<T>>().complete(list);
 	}
