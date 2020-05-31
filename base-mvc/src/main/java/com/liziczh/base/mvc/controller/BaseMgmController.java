@@ -17,7 +17,7 @@ import com.liziczh.base.common.service.BaseMgmService;
 public abstract class BaseMgmController<T extends BaseEntity, K, C> {
 	public abstract String getIndex() throws Exception;
 	public abstract BaseMgmService<T, K, C> getService() throws Exception;
-	@RequestMapping(value = "index", method = RequestMethod.GET)
+	@RequestMapping(value = "index", method = RequestMethod.POST)
 	public String index() throws Exception {
 		return getIndex();
 	}
@@ -46,7 +46,7 @@ public abstract class BaseMgmController<T extends BaseEntity, K, C> {
 		T entity = getService().get(id);
 		return new ResultBuilder<T>().complete(entity);
 	}
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
 	public Result<String> delete(@PathVariable K id) throws Exception {
 		getService().delete(id);
 		return new ResultBuilder<String>().complete("操作成功");
