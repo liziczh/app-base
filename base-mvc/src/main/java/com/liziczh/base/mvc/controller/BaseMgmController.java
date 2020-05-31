@@ -1,5 +1,7 @@
 package com.liziczh.base.mvc.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,12 +13,22 @@ import com.liziczh.base.common.result.ResultBuilder;
 import com.liziczh.base.common.service.BaseMgmService;
 
 @RestController
-public abstract class BaseMgmController<T extends BaseEntity, K> {
+public abstract class BaseMgmController<T extends BaseEntity, K, C> {
 	public abstract String getIndex() throws Exception;
-	public abstract BaseMgmService<T, K> getService() throws Exception;
+	public abstract BaseMgmService<T, K, C> getService() throws Exception;
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index() throws Exception {
 		return getIndex();
+	}
+	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+	public Result<List<T>> selectByCondition(@PathVariable C condition) throws Exception {
+		List<T> list = getService().selectByCondition(condition);
+		return new ResultBuilder<List<T>>().complete(list);
+	}
+	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
+	public Result<List<T>> getAll() throws Exception {
+		List<T> list = getService().getAll();
+		return new ResultBuilder<List<T>>().complete(list);
 	}
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public Result<String> add(T entity) throws Exception {
