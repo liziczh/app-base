@@ -1,9 +1,16 @@
 package com.liziczh.base.common.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 @Service
 public interface BaseMgmService<T, K> {
+	/**
+	 * 查询全部数据
+	 * @return 实体
+	 */
+	List<T> getAll();
 	/**
 	 * 新增数据
 	 * @param entity 实体
