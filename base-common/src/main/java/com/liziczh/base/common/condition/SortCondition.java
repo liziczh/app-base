@@ -8,7 +8,7 @@ import lombok.Data;
 public class SortCondition implements Serializable {
 	private static final long serialVersionUID = 2685484123703694389L;
 	private String cloName;
-	private ORDER orderType;
+	private String orderType;
 	/**
 	 * 排序类型
 	 */
