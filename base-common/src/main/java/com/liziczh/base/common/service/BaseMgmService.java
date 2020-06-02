@@ -34,7 +34,12 @@ public interface BaseMgmService<T, PK, C> {
 	 */
 	T get(PK id);
 	/**
-	 * 删除数据ByID
+	 * 逻辑删除数据ByID
+	 * @param id 主键
+	 */
+	void disable(PK id);
+	/**
+	 * 物理删除数据ByID
 	 * @param id 主键
 	 */
 	void delete(PK id);
