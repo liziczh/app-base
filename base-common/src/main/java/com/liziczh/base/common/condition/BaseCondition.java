@@ -1,7 +1,6 @@
 package com.liziczh.base.common.condition;
 
 import java.io.Serializable;
-import java.util.List;
 
 import lombok.Data;
 
