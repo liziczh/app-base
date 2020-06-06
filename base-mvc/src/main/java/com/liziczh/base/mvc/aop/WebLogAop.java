@@ -39,18 +39,6 @@ public class WebLogAop {
 		if (webLogIgnore != null) {
 			return;
 		}
-		// 开始打印请求日志
-		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-		assert attributes != null;
-		HttpServletRequest request = attributes.getRequest();
-		// 打印请求相关参数
-		log.info("========================================== Start ==========================================");
-		// 打印请求 url
-		log.info("URL            : {}", request.getRequestURL().toString());
-		// 打印 Http method
-		log.info("HTTP Method    : {}", request.getMethod());
-		// 打印请求的 IP
-		log.info("IP             : {}", request.getRemoteAddr());
 	}
 	/**
 	 * 环绕通知
@@ -68,6 +56,18 @@ public class WebLogAop {
 			return proceedingJoinPoint.proceed();
 		}
 		long startTime = System.currentTimeMillis();
+		// 开始打印请求日志
+		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+		assert attributes != null;
+		HttpServletRequest request = attributes.getRequest();
+		// 打印请求相关参数
+		log.info("========================================== Web Start ==========================================");
+		// 打印请求 url
+		log.info("URL            : {}", request.getRequestURL().toString());
+		// 打印 Http method
+		log.info("HTTP Method    : {}", request.getMethod());
+		// 打印请求的 IP
+		log.info("IP             : {}", request.getRemoteAddr());
 		// 打印调用 controller 的全路径以及执行方法
 		log.info("Class Method   : {}.{}", proceedingJoinPoint.getSignature().getDeclaringTypeName(), proceedingJoinPoint.getSignature().getName());
 		// 打印请求入参
@@ -83,6 +83,8 @@ public class WebLogAop {
 		log.info("Response Args  : {}", JacksonUtils.toJSONString(result));
 		// 执行耗时
 		log.info("Time-Consuming : {} ms", System.currentTimeMillis() - startTime);
+		// 接口结束
+		log.info("=========================================== Web End ===========================================");
 		return result;
 	}
 	/**
@@ -96,8 +98,6 @@ public class WebLogAop {
 		if (webLogIgnore != null) {
 			return;
 		}
-		// 接口结束
-		log.info("=========================================== End ===========================================" + System.lineSeparator());
 	}
 	/**
 	 * 返回通知
@@ -117,5 +117,7 @@ public class WebLogAop {
 		// 打印方法返回值
 		String returnValueJson = (returnValue == null) ? "null" : JacksonUtils.toJSONString(returnValue);
 		log.info("Return Value   : {}", JacksonUtils.toJSONString(returnValueJson));
+		// 接口返回
+		log.info("=========================================== Web Return ===========================================" + System.lineSeparator());
 	}
 }

@@ -55,7 +55,7 @@ public class ServiceLogAop {
 		}
 		long startTime = System.currentTimeMillis();
 		// 开始打印请求日志
-		log.info("========================================== Start ==========================================");
+		log.info("========================================== Service Start ==========================================");
 		// 打印调用 controller 的全路径以及执行方法
 		log.info("Class Method   : {}.{}", proceedingJoinPoint.getSignature().getDeclaringTypeName(), proceedingJoinPoint.getSignature().getName());
 		// 打印请求入参
@@ -72,7 +72,7 @@ public class ServiceLogAop {
 		// 执行耗时
 		log.info("Time-Consuming : {} ms", System.currentTimeMillis() - startTime);
 		// 接口结束后换行，方便分割查看
-		log.info("=========================================== End ===========================================");
+		log.info("=========================================== Service End ===========================================");
 		return result;
 	}
 	@After("executeService()")
@@ -103,6 +103,6 @@ public class ServiceLogAop {
 		String returnValueJson = (returnValue == null) ? "null" : JacksonUtils.toJSONString(returnValue);
 		log.info("Return Value   : {}", JacksonUtils.toJSONString(returnValueJson));
 		// 接口返回结束
-		log.info("=========================================== Return ===========================================");
+		log.info("=========================================== Service Return ===========================================");
 	}
 }
