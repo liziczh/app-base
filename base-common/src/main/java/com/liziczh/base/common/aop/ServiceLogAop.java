@@ -38,9 +38,6 @@ public class ServiceLogAop {
 		if (serviceLogIgnore != null) {
 			return;
 		}
-		// 开始打印请求日志
-		// 打印请求相关参数
-		log.info("========================================== Start ==========================================");
 	}
 	/**
 	 * 环绕通知
@@ -57,6 +54,8 @@ public class ServiceLogAop {
 			return proceedingJoinPoint.proceed();
 		}
 		long startTime = System.currentTimeMillis();
+		// 开始打印请求日志
+		log.info("========================================== Start ==========================================");
 		// 打印调用 controller 的全路径以及执行方法
 		log.info("Class Method   : {}.{}", proceedingJoinPoint.getSignature().getDeclaringTypeName(), proceedingJoinPoint.getSignature().getName());
 		// 打印请求入参
@@ -72,18 +71,18 @@ public class ServiceLogAop {
 		log.info("Response Args  : {}", JacksonUtils.toJSONString(result));
 		// 执行耗时
 		log.info("Time-Consuming : {} ms", System.currentTimeMillis() - startTime);
+		// 接口结束后换行，方便分割查看
+		log.info("=========================================== End ===========================================");
 		return result;
 	}
 	@After("executeService()")
-	public void doAfter(JoinPoint joinPoint) throws Throwable {
+	public void doAfter(JoinPoint joinPoint) {
 		// ServiceLogIgnore
 		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
 		ServiceLogIgnore serviceLogIgnore = AnnotationUtils.findAnnotation(methodSignature.getMethod(), ServiceLogIgnore.class);
 		if (serviceLogIgnore != null) {
 			return;
 		}
-		// 接口结束后换行，方便分割查看
-		log.info("=========================================== End ===========================================" + System.lineSeparator());
 	}
 	/**
 	 * 返回通知
@@ -103,5 +102,7 @@ public class ServiceLogAop {
 		// 打印方法返回值
 		String returnValueJson = (returnValue == null) ? "null" : JacksonUtils.toJSONString(returnValue);
 		log.info("Return Value   : {}", JacksonUtils.toJSONString(returnValueJson));
+		// 接口返回结束
+		log.info("=========================================== Return ===========================================");
 	}
 }
