@@ -8,7 +8,6 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>base-common</module>
-		<module>base-swagger</module>
 		<module>base-redis</module>
 		<module>base-rest</module>
 		<module>base-mybatis</module>
@@ -146,11 +145,6 @@
 			<dependency>
 				<groupId>com.liziczh</groupId>
 				<artifactId>base-common</artifactId>
-				<version>${base.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.liziczh</groupId>
-				<artifactId>base-swagger</artifactId>
 				<version>${base.version}</version>
 			</dependency>
 			<dependency>
