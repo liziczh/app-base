@@ -11,7 +11,6 @@
 		<module>base-redis</module>
 		<module>base-rest</module>
 		<module>base-mybatis</module>
-		<module>base-kafka</module>
 		<module>base-service</module>
 		<module>base-mvc</module>
 	</modules>
@@ -160,11 +159,6 @@
 			<dependency>
 				<groupId>com.liziczh</groupId>
 				<artifactId>base-mybatis</artifactId>
-				<version>${base.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.liziczh</groupId>
-				<artifactId>base-kafka</artifactId>
 				<version>${base.version}</version>
 			</dependency>
 			<dependency>
