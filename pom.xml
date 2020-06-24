@@ -139,26 +139,6 @@
 			</dependency>
 			<dependency>
 				<groupId>com.liziczh</groupId>
-				<artifactId>base-redis</artifactId>
-				<version>${base.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.liziczh</groupId>
-				<artifactId>base-rest</artifactId>
-				<version>${base.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.liziczh</groupId>
-				<artifactId>base-mybatis</artifactId>
-				<version>${base.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.liziczh</groupId>
-				<artifactId>base-service</artifactId>
-				<version>${base.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.liziczh</groupId>
 				<artifactId>base-mvc</artifactId>
 				<version>${base.version}</version>
 			</dependency>
