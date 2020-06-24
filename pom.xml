@@ -8,10 +8,6 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>base-common</module>
-		<module>base-redis</module>
-		<module>base-rest</module>
-		<module>base-mybatis</module>
-		<module>base-service</module>
 		<module>base-mvc</module>
 	</modules>
 	<!--profile 多环境配置-->
