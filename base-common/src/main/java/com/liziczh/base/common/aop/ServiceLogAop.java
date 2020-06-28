@@ -23,7 +23,7 @@ public class ServiceLogAop {
 	/**
 	 * 切入点
 	 */
-	@Pointcut("execution(public * com.liziczh..*.service..*.*(..))")
+	@Pointcut("execution(public * com.liziczh..*.service.impl.*.*(..))")
 	public void executeService() {
 	}
 	/**
