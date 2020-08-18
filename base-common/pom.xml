@@ -52,6 +52,11 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 		</dependency>
+		<!--easy excel-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>easyexcel</artifactId>
+		</dependency>
 		<!--aop-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
