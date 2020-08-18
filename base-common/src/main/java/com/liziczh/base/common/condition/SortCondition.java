@@ -2,9 +2,11 @@ package com.liziczh.base.common.condition;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class SortCondition implements Serializable {
 	private static final long serialVersionUID = 2685484123703694389L;
 	private String cloName;
