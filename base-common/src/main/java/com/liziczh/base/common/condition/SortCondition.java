@@ -4,9 +4,11 @@ import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class SortCondition implements Serializable {
 	private static final long serialVersionUID = 2685484123703694389L;
 	private String cloName;
