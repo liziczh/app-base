@@ -17,7 +17,7 @@ public class SortCondition implements Serializable {
 	 * 排序类型
 	 */
 	public enum ORDER {
-		AEC("AEC", "升序"),
+		ASC("ASC", "升序"),
 		DESC("DESC", "降序");
 
 		private String code;
