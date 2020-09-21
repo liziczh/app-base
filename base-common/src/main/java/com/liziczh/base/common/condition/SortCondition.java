@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SortCondition implements Serializable {
 	private static final long serialVersionUID = 2685484123703694389L;
-	private String cloName;
+	private String columnName;
 	private String orderType;
 	/**
 	 * 排序类型
