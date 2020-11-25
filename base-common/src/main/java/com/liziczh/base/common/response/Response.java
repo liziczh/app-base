@@ -43,6 +43,14 @@ public class Response<T> implements Serializable {
 	}
 	/**
 	 * 操作完成
+	 * @param data 数据
+	 * @return 响应信息
+	 */
+	public Response<T> complete(T data){
+		return new Response<>(RESPONSE_CODE.SUCCESS.getCode(), RESPONSE_CODE.SUCCESS.getMsg(), data);
+	}
+	/**
+	 * 操作完成
 	 * @param code 响应Code
 	 * @param message 响应描述
 	 * @param data 数据
@@ -58,17 +66,17 @@ public class Response<T> implements Serializable {
 		SUCCESS("200", "操作成功"),
 		FAILED("500", "操作失败");
 		private String code;
-		private String name;
+		private String msg;
 
-		private RESPONSE_CODE(String code, String name) {
+		private RESPONSE_CODE(String code, String msg) {
 			this.code = code;
-			this.name = name;
+			this.msg = msg;
 		}
 		public String getCode() {
 			return code;
 		}
-		public String getName() {
-			return name;
+		public String getMsg() {
+			return msg;
 		}
 	}
 }
