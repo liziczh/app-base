@@ -34,25 +34,6 @@ public class Response<T> implements Serializable {
 		return new Response<>(RESPONSE_CODE.SUCCESS.getCode(), message, null);
 	}
 	/**
-	 * 操作成功
-	 * @param code 响应Code
-	 * @param message 响应描述
-	 * @return 响应信息
-	 */
-	public Response<T> success(String code, String message){
-		return new Response<>(code, message, null);
-	}
-	/**
-	 * 操作成功
-	 * @param code 响应Code
-	 * @param message 响应描述
-	 * @param data 数据
-	 * @return 响应信息
-	 */
-	public Response<T> success(String code, String message, T data){
-		return new Response<>(code, message, data);
-	}
-	/**
 	 * 操作失败
 	 * @param message 响应描述
 	 * @return 响应信息
@@ -61,13 +42,14 @@ public class Response<T> implements Serializable {
 		return new Response<>(RESPONSE_CODE.FAILED.getCode(), message, null);
 	}
 	/**
-	 * 操作失败
+	 * 操作完成
 	 * @param code 响应Code
 	 * @param message 响应描述
+	 * @param data 数据
 	 * @return 响应信息
 	 */
-	public Response<T> failed(String code, String message){
-		return new Response<>(code, message, null);
+	public Response<T> complete(String code, String message, T data){
+		return new Response<>(code, message, data);
 	}
 	/**
 	 * 请求结果状态码
