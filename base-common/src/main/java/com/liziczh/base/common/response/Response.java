@@ -2,8 +2,6 @@ package com.liziczh.base.common.response;
 
 import java.io.Serializable;
 
-import com.liziczh.base.common.result.ResultConstant;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
