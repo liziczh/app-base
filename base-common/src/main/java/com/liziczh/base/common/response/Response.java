@@ -25,6 +25,13 @@ public class Response<T> implements Serializable {
 	private T data;
 	/**
 	 * 操作成功
+	 * @return 响应信息
+	 */
+	public Response<T> success(){
+		return new Response<>(RESPONSE_CODE.SUCCESS.getCode(), RESPONSE_CODE.SUCCESS.getMsg(), null);
+	}
+	/**
+	 * 操作成功
 	 * @param message 响应描述
 	 * @return 响应信息
 	 */
