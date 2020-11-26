@@ -19,5 +19,5 @@ public abstract class BaseContextProperties {
 	public static final String S_COME_FROM = "COME_FROM";
 	public static final String S_REFERER = "S_REFERER";
 	public static final String S_CHANNEL_CODE = "S_CHANNEL_CODE";
-	public static final String S_CLIENT_VERSION = "CLINET_VERSION";
+	public static final String S_CLIENT_VERSION = "CLIENT_VERSION";
 }

@@ -62,7 +62,8 @@ public class Response<T> implements Serializable {
 	 */
 	public static enum RESPONSE_CODE {
 		SUCCESS("200", "操作成功"),
-		FAILED("500", "操作失败");
+		FAILED("500", "操作失败"),
+		ERROR("102", "系统错误");
 		private String code;
 		private String msg;
 
