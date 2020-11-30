@@ -14,7 +14,7 @@ import com.liziczh.base.common.response.Response;
 import com.liziczh.base.common.service.BaseMgmService;
 
 @RestController
-public abstract class BaseMgmController<T extends BaseEntity, K, C extends BaseCondition> {
+public abstract class BaseMgmController<T, K, C extends BaseCondition> {
 	public abstract String getIndex() throws Exception;
 	public abstract BaseMgmService<T, K, C> getService() throws Exception;
 	@RequestMapping(value = "select", method = RequestMethod.GET)
