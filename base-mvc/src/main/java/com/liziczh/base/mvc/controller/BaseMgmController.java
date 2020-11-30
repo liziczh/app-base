@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.liziczh.base.common.condition.BaseCondition;
-import com.liziczh.base.common.entity.BaseEntity;
 import com.liziczh.base.common.response.Response;
 import com.liziczh.base.common.service.BaseMgmService;
 
