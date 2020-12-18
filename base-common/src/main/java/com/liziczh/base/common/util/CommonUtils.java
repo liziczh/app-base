@@ -12,29 +12,31 @@ import org.springframework.util.CollectionUtils;
  */
 public class CommonUtils {
 	/**
-	 * 逗号分隔字符串 to List
-	 * @param str 逗号分隔字符串
+	 * 字符串 to List
+	 * @param str 字符串
+	 * @param separator 分隔符
 	 * @return list
 	 */
-	public static List<String> string2ListByComma(String str) {
+	public static List<String> string2List(String str, String separator) {
 		if (StringUtils.isBlank(str)) {
 			return new ArrayList<>();
 		} else {
-			return Arrays.asList(str.split(","));
+			return Arrays.asList(str.split(separator));
 		}
 	}
 	/**
 	 * List to 逗号分隔字符串
 	 * @param list List
+	 * @param separator 分隔符
 	 * @return str
 	 */
-	public static String list2StringByComma(List<String> list) {
+	public static String list2String(List<String> list, String separator) {
 		if (CollectionUtils.isEmpty(list)) {
-			return "";
+			return null;
 		} else {
 			StringBuilder str = new StringBuilder();
 			for (String element : list) {
-				str.append(element).append(",");
+				str.append(element).append(separator);
 			}
 			return str.toString();
 		}
