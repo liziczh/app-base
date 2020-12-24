@@ -12,27 +12,27 @@ import lombok.extern.slf4j.Slf4j;
  * @author zhehao.chen
  */
 @Slf4j
-public class SnowFlakeIdWorker {
+public class SnowFlake {
 	/** 开始时间截 (2015-01-01) */
-	private final long twepoch = 1420041600000L;
+	private final long FIRST_TIMESTAMP = 1420041600000L;
 	/** 机器ID所占位数 */
-	private final long workerIdBits = 5L;
+	private final long MACHINE_ID_BITS = 5L;
 	/** 数据标识ID所占位数 */
-	private final long dataCenterIdBits = 5L;
+	private final long DATA_CENTER_ID_BITS = 5L;
 	/** 序列ID所占位数 */
 	private final long sequenceBits = 12L;
 	/** 最大机器ID：31 */
-	private final long maxWorkerId = ~(-1L << workerIdBits);
+	private final long MAX_MACHINE_ID = ~(-1L << MACHINE_ID_BITS);
 	/** 最大数据标识ID：31 */
-	private final long maxDataCenterId = ~(-1L << dataCenterIdBits);
+	private final long MAX_DATA_CENTER_ID = ~(-1L << DATA_CENTER_ID_BITS);
+	/** 最大序列掩码：4095 */
+	private final long MAX_SEQUENCE = ~(-1L << sequenceBits);
 	/** 机器ID左移位数：12位 */
-	private final long workerIdLeftShift = sequenceBits;
+	private final long MACHINE_ID_LEFT_SHIFT = sequenceBits;
 	/** 数据标识ID左移位数：17位（12+5） */
-	private final long dataCenterIdLeftShift = sequenceBits + workerIdBits;
+	private final long DATA_CENTER_ID_LEFT_SHIFT = sequenceBits + MACHINE_ID_BITS;
 	/** 时间戳差值左移位数：22位（12+5+5） */
-	private final long timestampLeftShift = sequenceBits + workerIdBits;
-	/** 序列掩码：4095 */
-	private final long sequenceMask = ~(-1L << sequenceBits);
+	private final long TIMESTAMP_LEFT_SHIFT = sequenceBits + MACHINE_ID_BITS;
 	/** 工作机器ID（0~31） */
 	private long workerId;
 	/** 数据中心ID（0~31） */
@@ -42,39 +42,54 @@ public class SnowFlakeIdWorker {
 	/** 上次生成ID的时间截 */
 	private long lastTimestamp = -1L;
 
-	public SnowFlakeIdWorker(long workerId, long dataCenterId) {
-		if (workerId < 0 || workerId > maxWorkerId) {
+	/**
+	 * 构造方法，初始化机器ID和数据中心ID
+	 * @param workerId
+	 * @param dataCenterId
+	 */
+	public SnowFlake(long workerId, long dataCenterId) {
+		if (workerId < 0 || workerId > MAX_MACHINE_ID) {
 			throw new IllegalArgumentException("workerId is invalid");
 		}
-		if (dataCenterId < 0 || dataCenterId > maxDataCenterId) {
+		if (dataCenterId < 0 || dataCenterId > MAX_DATA_CENTER_ID) {
 			throw new IllegalArgumentException("dataCenterId is invalid");
 		}
 		this.workerId = workerId;
 		this.dataCenterId = dataCenterId;
 	}
+	/**
+	 * 雪花算法生成分布式ID
+	 * @return ID
+	 */
 	public synchronized long nextId() {
-		long timestamp = System.currentTimeMillis();
+		long timestamp = this.getNewTimestamp();
 		// 如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过这个时候应当抛出异常
 		if (timestamp < lastTimestamp) {
-			throw new RuntimeException("系统时间回退，无法生成ID");
+			throw new RuntimeException("Clock moved backwards, Refusing to generate id.");
 		}
 		// 如果是同一时间生成的，则进行毫秒内序列
 		if (timestamp == lastTimestamp) {
-			sequence = (sequence + 1) & sequenceMask;
+			sequence = (sequence + 1) & MAX_SEQUENCE;
 			if (sequence == 0) {
-				long nextTimestamp = System.currentTimeMillis();
-				while (nextTimestamp <= lastTimestamp) {
-					nextTimestamp = System.currentTimeMillis();
-				}
-				timestamp = nextTimestamp;
+				timestamp = this.getNextMill();
 			}
 		} else {
 			sequence = 0L;
 		}
 		lastTimestamp = timestamp;
-		return ((timestamp - twepoch) << timestampLeftShift)
-				| (dataCenterId << dataCenterIdLeftShift)
-				| (workerId << workerIdLeftShift)
+		return ((timestamp - FIRST_TIMESTAMP) << TIMESTAMP_LEFT_SHIFT)
+				| (dataCenterId << DATA_CENTER_ID_LEFT_SHIFT)
+				| (workerId << MACHINE_ID_LEFT_SHIFT)
 				| sequence;
+	}
+	private long getNextMill() {
+		long newTimestamp = this.getNewTimestamp();
+		while (newTimestamp <= lastTimestamp) {
+			newTimestamp = this.getNewTimestamp();
+		}
+		return newTimestamp;
+	}
+	private long getNewTimestamp() {
+		return System.currentTimeMillis();
 	}
 }
