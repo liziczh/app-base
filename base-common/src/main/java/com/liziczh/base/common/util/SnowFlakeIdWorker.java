@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author zhehao.chen
  */
 @Slf4j
-public class SnowFlake {
+public class SnowFlakeIdWorker {
 	/** 开始时间截 (2015-01-01) */
 	private final long FIRST_TIMESTAMP = 1420041600000L;
 	/** 机器ID所占位数 */
@@ -47,7 +47,7 @@ public class SnowFlake {
 	 * @param workerId
 	 * @param dataCenterId
 	 */
-	public SnowFlake(long workerId, long dataCenterId) {
+	public SnowFlakeIdWorker(long workerId, long dataCenterId) {
 		if (workerId < 0 || workerId > MAX_MACHINE_ID) {
 			throw new IllegalArgumentException("workerId is invalid");
 		}
