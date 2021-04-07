@@ -6,7 +6,6 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 import lombok.extern.slf4j.Slf4j;
-import sun.misc.BASE64Decoder;
 
 /**
  * 对称加密解密
@@ -43,7 +42,7 @@ public class AESUtils {
 		String originalString = "";
 		try {
 			byte[] key = aesKey.getBytes();
-			byte[] encrypted1 = new BASE64Decoder().decodeBuffer(data);
+			byte[] encrypted1 = Base64.getDecoder().decode(data);
 			Cipher cipher = Cipher.getInstance("AES");
 			SecretKeySpec keySpec = new SecretKeySpec(key, "AES");
 			cipher.init(Cipher.DECRYPT_MODE, keySpec);
