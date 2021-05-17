@@ -73,7 +73,6 @@ public class AppDateUtils extends DateUtils {
 			return name;
 		}
 	}
-
 	public static Date stringToDate(String s, String pattern) throws Exception {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
 		return dateFormat.parse(s);
@@ -82,12 +81,12 @@ public class AppDateUtils extends DateUtils {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(format.getFormat());
 		return dateFormat.parse(s);
 	}
-	public static String dateToString(String s, String pattern) throws Exception {
+	public static String dateToString(Date date, String pattern) throws Exception {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-		return dateFormat.format(s);
+		return dateFormat.format(date);
 	}
-	public static String dateToString(String s, DATE_FORMAT format) throws Exception {
+	public static String dateToString(Date date, DATE_FORMAT format) throws Exception {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(format.getFormat());
-		return dateFormat.format(s);
+		return dateFormat.format(date);
 	}
 }
