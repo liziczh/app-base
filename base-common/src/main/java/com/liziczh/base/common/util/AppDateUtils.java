@@ -5,6 +5,7 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 @Slf4j
@@ -110,5 +111,38 @@ public class AppDateUtils extends DateUtils {
     public static String dateToString(Date date, DATE_FORMAT format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format.getFormat());
         return dateFormat.format(date);
+    }
+
+    /**
+     * 判断当前时间是否在时间范围内
+     * @author chenzhehao
+     * @date 2021/6/18 5:36 下午
+     */
+    public static Boolean betweenTimespan(String startTime, String endTime, String format) {
+        String current = AppDateUtils.dateToString(new Date(), format);
+        Date currentDate = AppDateUtils.stringToDate(current, format);
+        Date startDate = AppDateUtils.stringToDate(startTime, format);
+        Date endDate = AppDateUtils.stringToDate(endTime, format);
+        Calendar currentCalendar = Calendar.getInstance();
+        currentCalendar.setTime(currentDate);
+        Calendar startCalendar = Calendar.getInstance();
+        startCalendar.setTime(startDate);
+        Calendar endCalendar = Calendar.getInstance();
+        endCalendar.setTime(endDate);
+        if (startCalendar.after(endCalendar)) {
+            // 时间范围跨天，不在范围内即在范围内，在范围内即不在范围内
+            if (currentCalendar.after(startCalendar) || currentCalendar.before(endCalendar)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            // 时间范围不跨天，在范围内即在范围内，不在范围内即不在范围内
+            if (currentCalendar.after(startCalendar) && currentCalendar.before(endCalendar)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 }
