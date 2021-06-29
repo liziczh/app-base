@@ -26,14 +26,14 @@ public class HostUtils {
      * @author chenzhehao
      * @date 2021/6/29 5:10 下午
      */
-    private static String getHostname() {
+    public static String getHostname() {
         String hostname = "Unknown";
         InetAddress addr;
         try {
             addr = InetAddress.getLocalHost();
             hostname = addr.getHostName();
         } catch (UnknownHostException e) {
-            log.info("Unknown Host error");
+            log.info("Unknown Host error, e={}", e.getMessage());
         }
         return hostname;
     }
@@ -44,14 +44,14 @@ public class HostUtils {
      * @author chenzhehao
      * @date 2021/6/29 5:10 下午
      */
-    private static String getIp() {
+    public static String getIp() {
         String ip = "127.0.0.1";
         InetAddress addr;
         try {
             addr = InetAddress.getLocalHost();
             ip = addr.getHostAddress();
         } catch (UnknownHostException e) {
-            log.info("Unknown Host error");
+            log.info("Unknown Host error, e={}", e.getMessage());
         }
         return ip;
     }

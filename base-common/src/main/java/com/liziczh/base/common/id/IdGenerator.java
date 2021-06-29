@@ -4,6 +4,7 @@
  */
 package com.liziczh.base.common.id;
 
+import com.liziczh.base.common.util.HostUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -55,12 +56,20 @@ public class IdGenerator {
         return this.getInstance().nextId();
     }
 
-    private Long getWorkId() {
-        return 0L;
+    private Integer getWorkId() {
+        int hashCode = HostUtils.getHostname().hashCode();
+        return  Math.abs(hashCode % 10000);
     }
 
-    private Long getDataCenterId() {
-        return 0L;
+    private Integer getDataCenterId() {
+        int hashCode = HostUtils.getIp().hashCode();
+        return Math.abs(hashCode % 10000);
+    }
+
+    public static void main(String[] args) {
+        IdGenerator idGenerator = new IdGenerator();
+        idGenerator.init();
+        System.out.println(idGenerator.getId());
     }
 
 }
