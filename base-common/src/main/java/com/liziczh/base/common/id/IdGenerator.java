@@ -5,8 +5,9 @@
 package com.liziczh.base.common.id;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * ID生成器
@@ -20,11 +21,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class IdGenerator {
 
-    @Value("${server.workId}")
     private long workId;
 
-    @Value("${server.datacenterId}")
     private long dataCenterId;
+
+    @PostConstruct
+    public void init() {
+        this.workId = this.getWorkId();
+        this.dataCenterId = this.getDataCenterId();
+    }
 
     private static volatile SnowFlakeIdWorker instance;
 
@@ -40,7 +45,22 @@ public class IdGenerator {
         return instance;
     }
 
-    public long getId(){
+    /**
+     * 获取ID
+     *
+     * @author chenzhehao
+     * @date 2021/6/29 5:19 下午
+     */
+    public long getId() {
         return this.getInstance().nextId();
     }
+
+    private Long getWorkId() {
+        return 0L;
+    }
+
+    private Long getDataCenterId() {
+        return 0L;
+    }
+
 }
