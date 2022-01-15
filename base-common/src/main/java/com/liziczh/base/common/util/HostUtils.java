@@ -1,13 +1,9 @@
-/**
- * Baidu.com Inc.
- * Copyright (c) 2021 All Rights Reserved.
- */
 package com.liziczh.base.common.util;
-
-import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * HostUtils
@@ -23,17 +19,19 @@ public class HostUtils {
     /**
      * 获取主机名
      *
+     * @param
+     * @return java.lang.String
      * @author chenzhehao
-     * @date 2021/6/29 5:10 下午
+     * @date 2022/1/16 1:12 上午
      */
     public static String getHostname() {
         String hostname = "Unknown";
-        InetAddress addr;
+        InetAddress inetAddress;
         try {
-            addr = InetAddress.getLocalHost();
-            hostname = addr.getHostName();
+            inetAddress = InetAddress.getLocalHost();
+            hostname = inetAddress.getHostName();
         } catch (UnknownHostException e) {
-            log.info("Unknown Host error, e={}", e.getMessage());
+            log.info("HostUtils.getHostname, unknown host error", e);
         }
         return hostname;
     }
@@ -41,17 +39,18 @@ public class HostUtils {
     /**
      * 获取IP
      *
+     * @return java.lang.String
      * @author chenzhehao
-     * @date 2021/6/29 5:10 下午
+     * @date 2022/1/16 1:12 上午
      */
     public static String getIp() {
         String ip = "127.0.0.1";
-        InetAddress addr;
+        InetAddress inetAddress;
         try {
-            addr = InetAddress.getLocalHost();
-            ip = addr.getHostAddress();
+            inetAddress = InetAddress.getLocalHost();
+            ip = inetAddress.getHostAddress();
         } catch (UnknownHostException e) {
-            log.info("Unknown Host error, e={}", e.getMessage());
+            log.info("HostUtils.getIp, unknown host error", e);
         }
         return ip;
     }

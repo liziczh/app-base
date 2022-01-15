@@ -1,14 +1,12 @@
-/**
- * Baidu.com Inc.
- * Copyright (c) 2021 All Rights Reserved.
- */
 package com.liziczh.base.common.id;
 
-import com.liziczh.base.common.util.HostUtils;
-import lombok.extern.slf4j.Slf4j;
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import com.liziczh.base.common.util.HostUtils;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ID生成器
@@ -22,17 +20,21 @@ import javax.annotation.PostConstruct;
 @Component
 public class IdGenerator {
 
+    private static volatile SnowFlakeIdWorker instance;
     private long workId;
-
     private long dataCenterId;
+
+    public static void main(String[] args) {
+        IdGenerator idGenerator = new IdGenerator();
+        idGenerator.init();
+        System.out.println(idGenerator.getId());
+    }
 
     @PostConstruct
     public void init() {
         this.workId = this.getWorkId();
         this.dataCenterId = this.getDataCenterId();
     }
-
-    private static volatile SnowFlakeIdWorker instance;
 
     public SnowFlakeIdWorker getInstance() {
         if (instance == null) {
@@ -58,18 +60,12 @@ public class IdGenerator {
 
     private Integer getWorkId() {
         int hashCode = HostUtils.getHostname().hashCode();
-        return  Math.abs(hashCode % 10000);
+        return Math.abs(hashCode % 10000);
     }
 
     private Integer getDataCenterId() {
         int hashCode = HostUtils.getIp().hashCode();
         return Math.abs(hashCode % 10000);
-    }
-
-    public static void main(String[] args) {
-        IdGenerator idGenerator = new IdGenerator();
-        idGenerator.init();
-        System.out.println(idGenerator.getId());
     }
 
 }

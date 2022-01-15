@@ -1,120 +1,110 @@
 package com.liziczh.base.common.util;
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.time.DateUtils;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
+
+import com.liziczh.base.common.enums.DateFormatEnum;
+
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * 日期时间工具类
+ *
+ * @author chenzhehao
+ * @version 1.0
+ * @description
+ * @date 2022/1/16 12:11 上午
+ */
 @Slf4j
 public class AppDateUtils extends DateUtils {
-    /**
-     * 日期格式
-     */
-    public static enum DATE_FORMAT {
-        DATE("yyyyMMdd"),
-        H_DATE("yyyy-MM-dd"),
-        S_DATE("yyyy/MM/dd"),
-        D_DATE("yyyy.MM.dd"),
-        DATETIME_TO_MIN("yyyyMMddHHmm"),
-        H_DATETIME_TO_MIN("yyyy-MM-dd HH:mm"),
-        S_DATETIME_TO_MIN("yyyy/MM/dd HH:mm"),
-        D_DATETIME_TO_MIN("yyyy.MM.dd HH:mm"),
-        DATETIME("yyyyMMddHHmmss"),
-        H_DATETIME("yyyy-MM-dd HH:mm:ss"),
-        S_DATETIME("yyyy/MM/dd HH:mm:ss"),
-        D_DATETIME("yyyy.MM.dd HH:mm:ss"),
-        DATE_TO_MONTH("yyyyMM"),
-        H_DATE_TO_MONTH("yyyy-MM"),
-        S_DATE_TO_MONTH("yyyy/MM"),
-        D_DATE_TO_MONTH("yyyy.MM"),
-        MONTH_TO_DAY("MMdd"),
-        H_MONTH_TO_DAY("MM-dd"),
-        S_MONTH_TO_DAY("MM/dd"),
-        D_MONTH_TO_DAY("MM.dd"),
-        MONTH_TO_MIN("MMdd HH:mm"),
-        H_MONTH_TO_MIN("MM-dd HH:mm"),
-        S_MONTH_TO_MIN("MM/dd HH:mm"),
-        D_MONTH_TO_MIN("MM.dd HH:mm"),
-        TIME_TO_MIN("HH:mm"),
-        TIME("HH:mm:ss");
-
-        private String format;
-
-        private DATE_FORMAT(String format) {
-            this.format = format;
-        }
-
-        public String getFormat() {
-            return format;
-        }
-    }
 
     /**
-     * 日期单位
+     * 字符串转日期时间
+     *
+     * @param dateStr 日期时间字符串
+     * @param pattern 格式
+     * @return java.util.Date
+     * @author chenzhehao
+     * @date 2022/1/16 1:55 上午
      */
-    public static enum DATE_UNIT {
-        YEAR("Y", "年"),
-        MONTH("M", "月"),
-        DAY("d", "日"),
-        HOUR("h", "时"),
-        MIN("m", "分"),
-        SECOND("S", "秒"),
-        MILLISECOND("s", "毫秒");
-
-        private String unit;
-        private String name;
-
-        private DATE_UNIT(String unit, String name) {
-            this.unit = unit;
-            this.name = name;
+    public static Date stringToDate(String dateStr, String pattern) {
+        if (StringUtils.isAnyBlank(dateStr, pattern)) {
+            return null;
         }
-
-        public String getUnit() {
-            return unit;
-        }
-
-        public String getName() {
-            return name;
-        }
-    }
-
-    public static Date stringToDate(String s, String pattern) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-		Date result = new Date();
-		try {
-            result = dateFormat.parse(s);
+        Date date = new Date();
+        try {
+            date = dateFormat.parse(dateStr);
         } catch (Exception e) {
-            log.error("DateFormat String parse to Date error:{}, string={}, pattern={}", e.getMessage(), s, pattern);
+            log.error("AppDateUtils.stringToDate, string parse to date error, string={}, pattern={}",
+                    dateStr, pattern, e);
         }
-        return result;
+        return date;
     }
 
-    public static Date stringToDate(String s, DATE_FORMAT format) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(format.getFormat());
-		Date result = new Date();
-		try {
-			result = dateFormat.parse(s);
-		} catch (Exception e) {
-			log.error("DateFormat String parse to Date error:{}, string={}, format={}", e.getMessage(), s, format.getFormat());
-		}
-		return result;
-	}
-
+    /**
+     * 日期时间转字符串
+     *
+     * @param date    日期时间
+     * @param pattern 格式
+     * @return java.lang.String
+     * @author chenzhehao
+     * @date 2022/1/16 1:56 上午
+     */
     public static String dateToString(Date date, String pattern) {
+        if (Objects.isNull(date) || StringUtils.isBlank(pattern)) {
+            return null;
+        }
         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
         return dateFormat.format(date);
     }
 
-    public static String dateToString(Date date, DATE_FORMAT format) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(format.getFormat());
+    /**
+     * 字符串转日期时间
+     *
+     * @param dateStr 日期时间字符串
+     * @param format  格式
+     * @return java.util.Date
+     * @author chenzhehao
+     * @date 2022/1/16 1:55 上午
+     */
+    public static Date stringToDate(String dateStr, DateFormatEnum format) {
+        if (StringUtils.isAnyBlank(dateStr) || Objects.isNull(format)) {
+            return null;
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format.getPattern());
+        Date date = new Date();
+        try {
+            date = dateFormat.parse(dateStr);
+        } catch (Exception e) {
+            log.error("AppDateUtils.stringToDate, string parse to date error, string={}, pattern={}",
+                    dateStr, format.getPattern(), e);
+        }
+        return date;
+    }
+
+    /**
+     * 日期时间转字符串
+     *
+     * @param date   日期时间
+     * @param format 格式
+     * @return java.lang.String
+     * @author chenzhehao
+     * @date 2022/1/16 1:56 上午
+     */
+    public static String dateToString(Date date, DateFormatEnum format) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format.getPattern());
         return dateFormat.format(date);
     }
 
     /**
      * 判断当前时间是否在时间范围内
+     *
      * @author chenzhehao
      * @date 2021/6/18 5:36 下午
      */
