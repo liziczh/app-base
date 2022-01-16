@@ -1,4 +1,4 @@
-package com.liziczh.base.common.repository;
+package com.liziczh.base.repository;
 
 import java.util.List;
 
