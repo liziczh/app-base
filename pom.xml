@@ -15,6 +15,10 @@
         <module>base-api</module>
         <module>base-common</module>
         <module>base-web</module>
+        <module>base-dao</module>
+        <module>base-redis</module>
+        <module>base-mq</module>
+        <module>base-ref</module>
     </modules>
 
     <!--profile 多环境配置-->
