@@ -98,6 +98,21 @@
                 <artifactId>base-dao</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.liziczh</groupId>
+                <artifactId>base-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liziczh</groupId>
+                <artifactId>base-mq</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liziczh</groupId>
+                <artifactId>base-ref</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!-- spring-boot -->
             <dependency>
