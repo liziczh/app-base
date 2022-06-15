@@ -59,6 +59,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>1.8</jdk.version>
         <spring-boot.version>2.7.0</spring-boot.version>
+        <base-parent.version>1.0.0-SNAPSHOT</base-parent.version>
     </properties>
 
     <dependencies>
@@ -81,37 +82,37 @@
             <dependency>
                 <groupId>com.liziczh</groupId>
                 <artifactId>base-api</artifactId>
-                <version>${project.version}</version>
+                <version>${base-parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liziczh</groupId>
                 <artifactId>base-common</artifactId>
-                <version>${project.version}</version>
+                <version>${base-parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liziczh</groupId>
                 <artifactId>base-web</artifactId>
-                <version>${project.version}</version>
+                <version>${base-parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liziczh</groupId>
                 <artifactId>base-dao</artifactId>
-                <version>${project.version}</version>
+                <version>${base-parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liziczh</groupId>
                 <artifactId>base-redis</artifactId>
-                <version>${project.version}</version>
+                <version>${base-parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liziczh</groupId>
                 <artifactId>base-mq</artifactId>
-                <version>${project.version}</version>
+                <version>${base-parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liziczh</groupId>
                 <artifactId>base-ref</artifactId>
-                <version>${project.version}</version>
+                <version>${base-parent.version}</version>
             </dependency>
 
             <!-- spring-boot -->
