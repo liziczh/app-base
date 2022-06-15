@@ -1,4 +1,4 @@
-package com.liziczh.base.mvc.aop;
+package com.liziczh.base.web.aop;
 
 import javax.servlet.http.HttpServletRequest;
 

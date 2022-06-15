@@ -14,8 +14,7 @@
     <modules>
         <module>base-api</module>
         <module>base-common</module>
-        <module>base-repository</module>
-        <module>base-mvc</module>
+        <module>base-web</module>
     </modules>
 
     <!--profile 多环境配置-->
@@ -42,9 +41,9 @@
             </properties>
         </profile>
         <profile>
-            <id>product</id>
+            <id>online</id>
             <properties>
-                <env>product</env>
+                <env>online</env>
             </properties>
         </profile>
     </profiles>
@@ -55,11 +54,12 @@
         <maven.build.timestamp.format>MM/dd/yyyy HH:mm:ss(+8)</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>1.8</jdk.version>
-        <spring-boot.version>2.6.2</spring-boot.version>
+        <spring-boot.version>2.7.0</spring-boot.version>
+        <mvc-mesh-api.version>1.0.0-SNAPSHOT</mvc-mesh-api.version>
     </properties>
 
-    <!--maven依赖-->
     <dependencies>
+        <!-- spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -77,19 +77,60 @@
             <!-- module -->
             <dependency>
                 <groupId>com.liziczh</groupId>
-                <artifactId>base-api</artifactId>
+                <artifactId>mvc-mesh-api</artifactId>
+                <version>${mvc-mesh-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liziczh</groupId>
+                <artifactId>mvc-mesh-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liziczh</groupId>
-                <artifactId>base-common</artifactId>
+                <artifactId>mvc-mesh-app</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liziczh</groupId>
-                <artifactId>base-mvc</artifactId>
+                <artifactId>mvc-mesh-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.liziczh</groupId>
+                <artifactId>mvc-mesh-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liziczh</groupId>
+                <artifactId>mvc-mesh-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liziczh</groupId>
+                <artifactId>mvc-mesh-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liziczh</groupId>
+                <artifactId>mvc-mesh-dao</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liziczh</groupId>
+                <artifactId>mvc-mesh-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liziczh</groupId>
+                <artifactId>mvc-mesh-mq</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liziczh</groupId>
+                <artifactId>mvc-mesh-ref</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <!-- spring-boot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -98,6 +139,46 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- mapstruct -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>1.5.1.Final</version>
+            </dependency>
+            <!-- commons -->
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>3.2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.9.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>31.1-jre</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>5.5.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.rholder</groupId>
+                <artifactId>guava-retrying</artifactId>
+                <version>2.0.0</version>
+            </dependency>
+            <!-- fastjson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.68</version>
+            </dependency>
+
             <!-- mysql -->
             <dependency>
                 <groupId>mysql</groupId>
@@ -128,24 +209,21 @@
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>1.4.1</version>
             </dependency>
-            <!-- commons -->
+
+            <!-- kafka -->
             <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
-                <version>3.2.2</version>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>2.3.1</version>
             </dependency>
-            <!-- fastjson -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>1.2.68</version>
-            </dependency>
-            <!--easy excel-->
+
+            <!-- thread-local -->
             <dependency>
                 <groupId>com.alibaba</groupId>
-                <artifactId>easyexcel</artifactId>
-                <version>2.1.0-beta4</version>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>2.12.2</version>
             </dependency>
+
             <!--swagger-->
             <dependency>
                 <groupId>io.springfox</groupId>
@@ -157,16 +235,32 @@
                 <artifactId>swagger-bootstrap-ui</artifactId>
                 <version>1.9.6</version>
             </dependency>
-            <!-- kafka -->
+
+            <!--easy excel-->
             <dependency>
-                <groupId>org.apache.kafka</groupId>
-                <artifactId>kafka-clients</artifactId>
-                <version>2.3.1</version>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>2.1.0-beta4</version>
+            </dependency>
+
+            <!-- mock test -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>2.8.9</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.springframework.kafka</groupId>
-                <artifactId>spring-kafka</artifactId>
-                <version>2.3.7.RELEASE</version>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4</artifactId>
+                <version>1.7.4</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-api-mockito2</artifactId>
+                <version>1.7.4</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
