@@ -55,7 +55,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>1.8</jdk.version>
         <spring-boot.version>2.7.0</spring-boot.version>
-        <mvc-mesh-api.version>1.0.0-SNAPSHOT</mvc-mesh-api.version>
     </properties>
 
     <dependencies>
@@ -77,57 +76,22 @@
             <!-- module -->
             <dependency>
                 <groupId>com.liziczh</groupId>
-                <artifactId>mvc-mesh-api</artifactId>
-                <version>${mvc-mesh-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.liziczh</groupId>
-                <artifactId>mvc-mesh-common</artifactId>
+                <artifactId>base-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liziczh</groupId>
-                <artifactId>mvc-mesh-app</artifactId>
+                <artifactId>base-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liziczh</groupId>
-                <artifactId>mvc-mesh-web</artifactId>
+                <artifactId>base-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liziczh</groupId>
-                <artifactId>mvc-mesh-application</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.liziczh</groupId>
-                <artifactId>mvc-mesh-service</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.liziczh</groupId>
-                <artifactId>mvc-mesh-domain</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.liziczh</groupId>
-                <artifactId>mvc-mesh-dao</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.liziczh</groupId>
-                <artifactId>mvc-mesh-redis</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.liziczh</groupId>
-                <artifactId>mvc-mesh-mq</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.liziczh</groupId>
-                <artifactId>mvc-mesh-ref</artifactId>
+                <artifactId>base-dao</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

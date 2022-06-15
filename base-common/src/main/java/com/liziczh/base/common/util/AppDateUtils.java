@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.liziczh.mvc.mesh.common.enums.DateFormatEnum;
+import com.liziczh.base.common.enums.DateFormatEnum;
 
 import lombok.extern.slf4j.Slf4j;
 

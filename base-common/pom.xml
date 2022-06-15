@@ -7,19 +7,13 @@
 		<artifactId>base-parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-
-	<groupId>com.liziczh</groupId>
 	<artifactId>base-common</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-
-	<name>base-common</name>
-	<description>Base Common for Spring Boot</description>
 
 	<dependencies>
 		<!-- api -->
 		<dependency>
 			<groupId>com.liziczh</groupId>
-			<artifactId>mvc-mesh-api</artifactId>
+			<artifactId>base-api</artifactId>
 		</dependency>
 		<!-- aop -->
 		<dependency>
