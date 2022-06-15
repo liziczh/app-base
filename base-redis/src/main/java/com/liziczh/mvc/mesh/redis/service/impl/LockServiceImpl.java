@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import com.liziczh.mvc.mesh.redis.constants.RedisConstants;
 import com.liziczh.mvc.mesh.redis.service.LockService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,13 +29,13 @@ public class LockServiceImpl implements LockService {
     private RedisTemplate<String, Object> redisTemplate;
 
     @Override
-    public boolean tryLock(String key) {
+    public boolean tryLock(String key, int timeout) {
         if (StringUtils.isBlank(key)) {
             return true;
         }
 
         try {
-            Boolean lock = redisTemplate.opsForValue().setIfAbsent(key, 1, RedisConstants.LOCK_TIME, TimeUnit.SECONDS);
+            Boolean lock = redisTemplate.opsForValue().setIfAbsent(key, 1, timeout, TimeUnit.SECONDS);
             return BooleanUtils.isTrue(lock);
         } catch (Exception e) {
             log.error("LockServiceImpl.tryLock, error", e);

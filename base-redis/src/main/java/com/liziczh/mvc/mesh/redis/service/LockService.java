@@ -15,11 +15,12 @@ public interface LockService {
      * 加锁
      *
      * @param lock
+     * @param timeout
      * @return boolean
      * @author chenzhehao
      * @date 2022/1/16 6:22 下午
      */
-    boolean tryLock(String lock);
+    boolean tryLock(String lock, int timeout);
 
     /**
      * 解锁
