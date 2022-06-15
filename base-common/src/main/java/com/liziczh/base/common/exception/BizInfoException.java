@@ -1,7 +1,12 @@
 package com.liziczh.base.common.exception;
 
 /**
- * 用户操作异常
+ * 业务INFO异常
+ *
+ * @author chenzhehao
+ * @version 1.0
+ * @description
+ * @date 2021/7/17 21:52
  */
 public class BizInfoException extends BaseException {
     private static final long serialVersionUID = -2999713747880719040L;

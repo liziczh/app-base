@@ -6,9 +6,8 @@ import java.util.Date;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
 
-import com.liziczh.base.common.enums.DateFormatEnum;
+import com.liziczh.mvc.mesh.common.enums.DateFormatEnum;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2022/1/16 12:11 上午
  */
 @Slf4j
-public class AppDateUtils extends DateUtils {
+public class AppDateUtils {
 
     /**
      * 字符串转日期时间
@@ -48,23 +47,6 @@ public class AppDateUtils extends DateUtils {
     }
 
     /**
-     * 日期时间转字符串
-     *
-     * @param date    日期时间
-     * @param pattern 格式
-     * @return java.lang.String
-     * @author chenzhehao
-     * @date 2022/1/16 1:56 上午
-     */
-    public static String dateToString(Date date, String pattern) {
-        if (Objects.isNull(date) || StringUtils.isBlank(pattern)) {
-            return null;
-        }
-        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-        return dateFormat.format(date);
-    }
-
-    /**
      * 字符串转日期时间
      *
      * @param dateStr 日期时间字符串
@@ -86,6 +68,23 @@ public class AppDateUtils extends DateUtils {
                     dateStr, format.getPattern(), e);
         }
         return date;
+    }
+
+    /**
+     * 日期时间转字符串
+     *
+     * @param date    日期时间
+     * @param pattern 格式
+     * @return java.lang.String
+     * @author chenzhehao
+     * @date 2022/1/16 1:56 上午
+     */
+    public static String dateToString(Date date, String pattern) {
+        if (Objects.isNull(date) || StringUtils.isBlank(pattern)) {
+            return null;
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+        return dateFormat.format(date);
     }
 
     /**

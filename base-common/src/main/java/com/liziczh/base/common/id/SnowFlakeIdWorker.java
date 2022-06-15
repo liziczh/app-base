@@ -61,14 +61,6 @@ public class SnowFlakeIdWorker {
      */
     private static final long TIMESTAMP_LEFT_SHIFT = SEQUENCE_BITS + MACHINE_ID_BITS;
     /**
-     * 工作机器ID（0~31）
-     */
-    private long workerId;
-    /**
-     * 数据中心ID（0~31）
-     */
-    private long dataCenterId;
-    /**
      * 毫秒内序列（0~4095）
      */
     private static long sequence = 0L;
@@ -76,6 +68,14 @@ public class SnowFlakeIdWorker {
      * 上次生成ID的时间截
      */
     private static long lastTimestamp = -1L;
+    /**
+     * 工作机器ID（0~31）
+     */
+    private long workerId;
+    /**
+     * 数据中心ID（0~31）
+     */
+    private long dataCenterId;
 
     /**
      * 构造方法，初始化机器ID和数据中心ID

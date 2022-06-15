@@ -25,7 +25,7 @@ public class HostUtils {
      * @date 2022/1/16 1:12 上午
      */
     public static String getHostname() {
-        String hostname = "Unknown";
+        String hostname = "unknown";
         InetAddress inetAddress;
         try {
             inetAddress = InetAddress.getLocalHost();

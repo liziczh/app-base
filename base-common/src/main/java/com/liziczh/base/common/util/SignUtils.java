@@ -79,12 +79,6 @@ public class SignUtils {
      *
      * @param paramMap 参数
      * @return 过滤后的参数Map
-     */
-    /**
-     * 参数过滤
-     *
-     * @param paramMap 参数
-     * @return 过滤后的参数Map
      * @return java.util.Map<java.lang.String, java.lang.Object>
      * @author chenzhehao
      * @date 2022/1/16 2:12 上午

@@ -8,8 +8,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
 import com.liziczh.base.common.util.JsonUtils;
@@ -34,12 +32,7 @@ public class ServiceLogAop {
      */
     @Before("executeService()")
     public void doBefore(JoinPoint joinPoint) {
-        // ServiceLogIgnore
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        ServiceLogIgnore serviceLogIgnore = AnnotationUtils.findAnnotation(methodSignature.getMethod(), ServiceLogIgnore.class);
-        if (serviceLogIgnore != null) {
-            return;
-        }
+
     }
 
     /**
@@ -51,17 +44,12 @@ public class ServiceLogAop {
      */
     @Around("executeService()")
     public Object doAroundAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        // ServiceLogIgnore
-        MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
-        ServiceLogIgnore serviceLogIgnore = AnnotationUtils.findAnnotation(methodSignature.getMethod(), ServiceLogIgnore.class);
-        if (serviceLogIgnore != null) {
-            return proceedingJoinPoint.proceed();
-        }
         long startTime = System.currentTimeMillis();
         // 开始打印请求日志
         log.info("========================================== Service Start ==========================================");
         // 打印调用 controller 的全路径以及执行方法
-        log.info("Class Method   : {}.{}", proceedingJoinPoint.getSignature().getDeclaringTypeName(), proceedingJoinPoint.getSignature().getName());
+        log.info("Class Method   : {}.{}", proceedingJoinPoint.getSignature().getDeclaringTypeName(),
+                proceedingJoinPoint.getSignature().getName());
         // 打印请求入参
         String methodParams = null;
         Object[] args = proceedingJoinPoint.getArgs();
@@ -72,7 +60,7 @@ public class ServiceLogAop {
         // 执行方法
         Object result = proceedingJoinPoint.proceed();
         // 打印出参
-        log.info("Response Args  : {}", JsonUtils.toJson(result));
+        log.info("BsaeResponse Args  : {}", JsonUtils.toJson(result));
         // 执行耗时
         log.info("Time-Consuming : {} ms", System.currentTimeMillis() - startTime);
         // 接口结束后换行，方便分割查看
@@ -82,12 +70,6 @@ public class ServiceLogAop {
 
     @After("executeService()")
     public void doAfter(JoinPoint joinPoint) {
-        // ServiceLogIgnore
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        ServiceLogIgnore serviceLogIgnore = AnnotationUtils.findAnnotation(methodSignature.getMethod(), ServiceLogIgnore.class);
-        if (serviceLogIgnore != null) {
-            return;
-        }
     }
 
     /**
@@ -98,18 +80,13 @@ public class ServiceLogAop {
      */
     @AfterReturning(value = "executeService()", returning = "returnValue")
     public void doAfterReturningAdvice(JoinPoint joinPoint, Object returnValue) {
-        // ServiceLogIgnore
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        ServiceLogIgnore serviceLogIgnore = AnnotationUtils.findAnnotation(methodSignature.getMethod(), ServiceLogIgnore.class);
-        if (serviceLogIgnore != null) {
-            return;
-        }
         // 打印调用 controller 的全路径以及执行方法
-        log.info("Class Method   : {}.{}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
+        log.info("Class Method   : {}.{}", joinPoint.getSignature().getDeclaringTypeName(),
+                joinPoint.getSignature().getName());
         // 打印方法返回值
         String returnValueJson = (returnValue == null) ? "null" : JsonUtils.toJson(returnValue);
         log.info("Return Value   : {}", JsonUtils.toJson(returnValueJson));
         // 接口返回结束
-        log.info("=========================================== Service Return ===========================================");
+        log.info("========================================= Service Return =========================================");
     }
 }

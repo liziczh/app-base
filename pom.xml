@@ -18,6 +18,37 @@
         <module>base-mvc</module>
     </modules>
 
+    <!--profile 多环境配置-->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env>test</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <properties>
+                <env>uat</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>product</id>
+            <properties>
+                <env>product</env>
+            </properties>
+        </profile>
+    </profiles>
+
     <!--属性配置-->
     <properties>
         <!--工程属性-->
@@ -139,37 +170,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <!--profile 多环境配置-->
-    <profiles>
-        <profile>
-            <id>dev</id>
-            <properties>
-                <env>dev</env>
-            </properties>
-        </profile>
-        <profile>
-            <id>test</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <env>test</env>
-            </properties>
-        </profile>
-        <profile>
-            <id>uat</id>
-            <properties>
-                <env>uat</env>
-            </properties>
-        </profile>
-        <profile>
-            <id>product</id>
-            <properties>
-                <env>product</env>
-            </properties>
-        </profile>
-    </profiles>
 
     <!--Maven构建管理-->
     <build>

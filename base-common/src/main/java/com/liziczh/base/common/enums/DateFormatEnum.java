@@ -1,5 +1,8 @@
 package com.liziczh.base.common.enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 /**
  * 日期时间格式枚举
  *
@@ -8,6 +11,8 @@ package com.liziczh.base.common.enums;
  * @description
  * @date 2022/1/16 1:46 上午
  */
+@Getter
+@AllArgsConstructor
 public enum DateFormatEnum {
     DATE("yyyyMMdd"),
     H_DATE("yyyy-MM-dd"),
@@ -34,15 +39,8 @@ public enum DateFormatEnum {
     S_MONTH_TO_MIN("MM/dd HH:mm"),
     D_MONTH_TO_MIN("MM.dd HH:mm"),
     TIME_TO_MIN("HH:mm"),
-    TIME("HH:mm:ss");
+    TIME("HH:mm:ss"),
+    ;
 
     private String pattern;
-
-    DateFormatEnum(String pattern) {
-        this.pattern = pattern;
-    }
-
-    public String getPattern() {
-        return pattern;
-    }
 }

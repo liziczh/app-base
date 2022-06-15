@@ -1,4 +1,4 @@
-package com.liziczh.base.common.condition;
+package com.liziczh.base.api.condition;
 
 import java.io.Serializable;
 
