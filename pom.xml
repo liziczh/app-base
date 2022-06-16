@@ -59,7 +59,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>1.8</jdk.version>
         <spring-boot.version>2.7.0</spring-boot.version>
-        <base-parent.version>1.0.0-SNAPSHOT</base-parent.version>
+        <base-api.version>1.0.0-SNAPSHOT</base-api.version>
+        <base-parent.version>${project.version}</base-parent.version>
     </properties>
 
     <dependencies>
@@ -82,7 +83,7 @@
             <dependency>
                 <groupId>com.liziczh</groupId>
                 <artifactId>base-api</artifactId>
-                <version>${base-parent.version}</version>
+                <version>${base-api.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liziczh</groupId>
