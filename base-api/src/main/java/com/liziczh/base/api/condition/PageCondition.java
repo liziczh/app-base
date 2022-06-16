@@ -1,13 +1,27 @@
 package com.liziczh.base.api.condition;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
+/**
+ * 分页查询条件
+ *
+ * @author chenzhehao
+ * @version 1.0
+ * @description
+ * @date 2021/7/17 21:52
+ */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class PageCondition {
-    private Integer pageNum = 1;
-    private Integer pageSize = 20;
+    private Integer pageNo = 1;
+    private Integer size = 10;
+
+    public PageCondition pageNo(Integer pageNo) {
+        this.pageNo = pageNo;
+        return this;
+    }
+
+    public PageCondition size(Integer size) {
+        this.size = size;
+        return this;
+    }
 }
