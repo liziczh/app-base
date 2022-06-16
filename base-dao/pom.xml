@@ -15,6 +15,10 @@
             <groupId>com.liziczh</groupId>
             <artifactId>base-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.liziczh</groupId>
+            <artifactId>base-redis</artifactId>
+        </dependency>
 
         <!-- jdbc -->
         <dependency>

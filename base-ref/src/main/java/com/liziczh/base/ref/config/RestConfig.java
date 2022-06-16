@@ -1,4 +1,4 @@
-package com.liziczh.mvc.mesh.ref.config;
+package com.liziczh.base.ref.config;
 
 import javax.annotation.PostConstruct;
 
