@@ -60,7 +60,7 @@
         <jdk.version>1.8</jdk.version>
         <spring-boot.version>2.7.0</spring-boot.version>
         <base-api.version>1.0.0-SNAPSHOT</base-api.version>
-        <base-parent.version>${project.version}</base-parent.version>
+        <base-parent.version>1.0.0-SNAPSHOT</base-parent.version>
     </properties>
 
     <dependencies>
