@@ -1,6 +1,6 @@
 package com.liziczh.base.api.common.response;
 
-import lombok.Data;
+import lombok.*;
 
 /**
  * 响应体
@@ -11,6 +11,10 @@ import lombok.Data;
  * @date 2021/12/10 11:06 下午
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class BaseResponse<T> {
 
     /**

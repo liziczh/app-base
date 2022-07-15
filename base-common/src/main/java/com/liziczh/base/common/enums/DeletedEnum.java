@@ -1,7 +1,5 @@
 package com.liziczh.base.common.enums;
 
-import java.util.Objects;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -23,7 +21,7 @@ public enum DeletedEnum {
     private String desc;
 
     public static DeletedEnum getEnum(Integer code) {
-        if (Objects.nonNull(code)) {
+        if (code != null) {
             for (DeletedEnum value : DeletedEnum.values()) {
                 if (value.getCode().equals(code)) {
                     return value;

@@ -1,6 +1,6 @@
 package com.liziczh.base.api.common.request;
 
-import lombok.Data;
+import lombok.*;
 
 /**
  * 请求体
@@ -11,6 +11,10 @@ import lombok.Data;
  * @date 2021/12/10 11:06 下午
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class BaseRequest<T> {
 
     /**
@@ -22,4 +26,5 @@ public class BaseRequest<T> {
      * 数据
      */
     private T data;
+
 }

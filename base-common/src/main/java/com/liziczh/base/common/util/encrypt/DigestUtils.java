@@ -1,11 +1,10 @@
-package com.liziczh.base.common.util;
+package com.liziczh.base.common.util.encrypt;
+
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import org.apache.commons.lang3.StringUtils;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 摘要工具类

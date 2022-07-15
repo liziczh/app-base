@@ -13,7 +13,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum StatusCodeEnum {
+public enum ResponseCodeEnum {
     SUCCESS("100200", "成功"),
     ERROR("100500", "系统错误"),
     BAD_REQUEST("100501", "请求参数错误"),

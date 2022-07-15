@@ -1,13 +1,11 @@
-package com.liziczh.base.common.util;
+package com.liziczh.base.common.util.encrypt;
 
-import java.util.Base64;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.apache.commons.lang3.StringUtils;
-
-import lombok.extern.slf4j.Slf4j;
+import java.util.Base64;
 
 /**
  * AES加密解密

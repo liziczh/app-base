@@ -3,7 +3,6 @@ package com.liziczh.base.web.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -26,7 +25,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class Swagger2Config {
 
     public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.liziczh";
-    public static final String PRODUCT_ENV = "online";
+    public static final String ONLINE_ENV = "online";
 
     @Value("${spring.profiles.active}")
     private String env;
@@ -34,7 +33,7 @@ public class Swagger2Config {
     @Bean
     public Docket docket() {
         Docket docket = null;
-        if (!PRODUCT_ENV.equals(env)) {
+        if (!ONLINE_ENV.equals(env)) {
             docket = new Docket(DocumentationType.SWAGGER_2)
                     .apiInfo(apiInfo())
                     .select()

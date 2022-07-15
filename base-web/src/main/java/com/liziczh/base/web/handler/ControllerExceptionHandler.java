@@ -1,21 +1,18 @@
 package com.liziczh.base.web.handler;
 
+import com.liziczh.base.api.common.response.BaseResponse;
+import com.liziczh.base.common.enums.ResponseCodeEnum;
+import com.liziczh.base.common.exception.BizErrorException;
+import com.liziczh.base.common.exception.BizInfoException;
+import com.liziczh.base.common.exception.BizWarnException;
+import com.liziczh.base.common.util.JsonUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import com.liziczh.base.api.common.response.BaseResponse;
-import com.liziczh.base.common.enums.StatusCodeEnum;
-import com.liziczh.base.common.exception.BizErrorException;
-import com.liziczh.base.common.exception.BizInfoException;
-import com.liziczh.base.common.exception.BizWarnException;
-import com.liziczh.base.common.response.ResponseBuilder;
-import com.liziczh.base.common.util.JsonUtils;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Controller异常转换
@@ -33,6 +30,7 @@ public class ControllerExceptionHandler {
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public BaseResponse<Void> handleBizInfoException(BizInfoException e) {
+        log.info("ControllerExceptionHandler.handleBizInfoException, code={}, msg={}", e.getCode(), e.getMessage());
         return buildResponse(e.getCode(), e.getMessage());
     }
 
@@ -40,6 +38,7 @@ public class ControllerExceptionHandler {
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public BaseResponse<Void> handleBizWarnException(BizWarnException e) {
+        log.warn("ControllerExceptionHandler.handleBizWarnException, code={}, msg={}", e.getCode(), e.getMessage());
         return buildResponse(e.getCode(), e.getMessage());
     }
 
@@ -47,6 +46,7 @@ public class ControllerExceptionHandler {
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public BaseResponse<Void> handleBizErrorException(BizErrorException e) {
+        log.error("ControllerExceptionHandler.handleBizErrorException, code={}, msg={}", e.getCode(), e.getMessage());
         return buildResponse(e.getCode(), e.getMessage());
     }
 
@@ -54,7 +54,8 @@ public class ControllerExceptionHandler {
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public BaseResponse<Void> handleException(Exception e) {
-        return ResponseBuilder.error();
+        log.error("ControllerExceptionHandler.handleException, e", e);
+        return buildResponse(null, null);
     }
 
     /**
@@ -68,9 +69,9 @@ public class ControllerExceptionHandler {
      */
     private BaseResponse<Void> buildResponse(String code, String msg) {
         BaseResponse<Void> baseResponse = new BaseResponse<Void>()
-                .code(StringUtils.isBlank(code) ? StatusCodeEnum.ERROR.getCode() : code)
-                .msg(StringUtils.isBlank(msg) ? StatusCodeEnum.ERROR.getDesc() : msg);
-        log.info("exception error：{}", JsonUtils.toJson(baseResponse));
+                .code(StringUtils.isBlank(code) ? ResponseCodeEnum.ERROR.getCode() : code)
+                .msg(StringUtils.isBlank(msg) ? ResponseCodeEnum.ERROR.getDesc() : msg);
+        log.info("ControllerExceptionHandler.buildResponse, response={}", JsonUtils.toJson(baseResponse));
         return baseResponse;
     }
 }

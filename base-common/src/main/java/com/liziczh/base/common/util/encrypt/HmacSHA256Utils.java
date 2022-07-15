@@ -1,14 +1,12 @@
-package com.liziczh.base.common.util;
+package com.liziczh.base.common.util.encrypt;
 
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.apache.commons.lang3.StringUtils;
-
-import lombok.extern.slf4j.Slf4j;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * HmacSHA256
