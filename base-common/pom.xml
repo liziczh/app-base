@@ -15,6 +15,18 @@
 			<groupId>com.liziczh</groupId>
 			<artifactId>base-api</artifactId>
 		</dependency>
+
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- aop -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -61,20 +73,6 @@
 		<dependency>
 			<groupId>com.github.rholder</groupId>
 			<artifactId>guava-retrying</artifactId>
-		</dependency>
-
-		<!--jackson-->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
 		</dependency>
 
 		<!--easy excel-->

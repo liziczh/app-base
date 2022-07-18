@@ -1,17 +1,13 @@
-package com.liziczh.mvc.mesh.redis.service.impl;
+package com.liziczh.mvc.mesh.redis.utils;
 
-import java.util.concurrent.TimeUnit;
-
-import javax.annotation.Resource;
-
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import com.liziczh.mvc.mesh.redis.service.LockService;
-
-import lombok.extern.slf4j.Slf4j;
+import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Redis并发锁服务
@@ -23,12 +19,20 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Service
-public class LockServiceImpl implements LockService {
+public class LockUtils {
 
     @Resource(name = "redisStringTemplate")
     private RedisTemplate<String, Object> redisTemplate;
 
-    @Override
+    /**
+     * 加锁
+     *
+     * @param key
+     * @param timeout
+     * @return boolean
+     * @author chenzhehao
+     * @date 2022/1/16 6:22 下午
+     */
     public boolean tryLock(String key, int timeout) {
         if (StringUtils.isBlank(key)) {
             return true;
@@ -44,7 +48,14 @@ public class LockServiceImpl implements LockService {
 
     }
 
-    @Override
+    /**
+     * 解锁
+     *
+     * @param key
+     * @return void
+     * @author chenzhehao
+     * @date 2022/1/16 6:22 下午
+     */
     public boolean releaseLock(String key) {
         if (StringUtils.isBlank(key)) {
             return true;
