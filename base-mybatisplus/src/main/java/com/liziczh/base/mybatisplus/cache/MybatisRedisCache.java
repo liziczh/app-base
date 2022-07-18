@@ -1,4 +1,4 @@
-package com.liziczh.base.dao.cache;
+package com.liziczh.base.mybatisplus.cache;
 
 import com.liziczh.base.common.util.SpringContextUtil;
 import org.apache.ibatis.cache.Cache;

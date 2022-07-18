@@ -1,10 +1,9 @@
-package com.liziczh.base.dao.config;
+package com.liziczh.base.mybatisplus.config;
 
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 
 /**
  * MyBatisPlusConfig

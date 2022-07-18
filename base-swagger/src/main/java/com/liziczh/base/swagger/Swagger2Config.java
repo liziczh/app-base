@@ -1,4 +1,4 @@
-package com.liziczh.base.web.config;
+package com.liziczh.base.swagger;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

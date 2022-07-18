@@ -1,4 +1,4 @@
-package com.liziczh.mvc.mesh.redis.config;
+package com.liziczh.base.redis.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

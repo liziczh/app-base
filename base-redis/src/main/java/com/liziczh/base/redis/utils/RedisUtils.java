@@ -1,4 +1,4 @@
-package com.liziczh.mvc.mesh.redis.utils;
+package com.liziczh.base.redis.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.BooleanUtils;
