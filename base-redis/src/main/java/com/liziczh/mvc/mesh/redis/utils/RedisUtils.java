@@ -19,10 +19,24 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Service
-public class LockUtils {
+public class RedisUtils {
 
-    @Resource(name = "redisStringTemplate")
+    @Resource(name = "redisTemplate")
     private RedisTemplate<String, Object> redisTemplate;
+
+    public Long incr(String key) {
+        if (StringUtils.isBlank(key)) {
+            return 0L;
+        }
+
+        try {
+            return redisTemplate.opsForValue().increment(key);
+        } catch (Exception e) {
+            log.error("RedisUtils.incr, error", e);
+            return 0L;
+        }
+
+    }
 
     /**
      * 加锁
@@ -42,7 +56,7 @@ public class LockUtils {
             Boolean lock = redisTemplate.opsForValue().setIfAbsent(key, 1, timeout, TimeUnit.SECONDS);
             return BooleanUtils.isTrue(lock);
         } catch (Exception e) {
-            log.error("LockServiceImpl.tryLock, error", e);
+            log.error("RedisUtils.tryLock, error", e);
             return false;
         }
 
@@ -57,6 +71,7 @@ public class LockUtils {
      * @date 2022/1/16 6:22 下午
      */
     public boolean releaseLock(String key) {
+
         if (StringUtils.isBlank(key)) {
             return true;
         }
@@ -64,8 +79,10 @@ public class LockUtils {
             Boolean delete = redisTemplate.delete(key);
             return BooleanUtils.isTrue(delete);
         } catch (Exception e) {
-            log.error("LockServiceImpl.releaseLock, error", e);
+            log.error("RedisUtils.releaseLock, error", e);
             return false;
         }
+
     }
+
 }
