@@ -19,6 +19,7 @@
         <module>base-redis</module>
         <module>base-kafka</module>
         <module>base-rest</module>
+        <module>base-mail</module>
         <module>base-swagger</module>
     </modules>
 
@@ -106,6 +107,11 @@
             <dependency>
                 <groupId>com.liziczh</groupId>
                 <artifactId>base-rest</artifactId>
+                <version>${base-parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liziczh</groupId>
+                <artifactId>base-mail</artifactId>
                 <version>${base-parent.version}</version>
             </dependency>
 
