@@ -1,7 +1,7 @@
 package com.liziczh.base.web.handler;
 
 import com.liziczh.base.api.common.response.BaseResponse;
-import com.liziczh.base.common.enums.ResponseCodeEnum;
+import com.liziczh.base.common.enums.BaseCodeEnum;
 import com.liziczh.base.common.exception.BizErrorException;
 import com.liziczh.base.common.exception.BizInfoException;
 import com.liziczh.base.common.exception.BizWarnException;
@@ -68,9 +68,10 @@ public class ControllerExceptionHandler {
      * @date 2022/1/16 10:10 下午
      */
     private BaseResponse<Void> buildResponse(String code, String msg) {
-        BaseResponse<Void> baseResponse = new BaseResponse<Void>()
-                .code(StringUtils.isBlank(code) ? ResponseCodeEnum.ERROR.getCode() : code)
-                .msg(StringUtils.isBlank(msg) ? ResponseCodeEnum.ERROR.getDesc() : msg);
+        BaseResponse<Void> baseResponse = BaseResponse.<Void>builder()
+                .code(StringUtils.isBlank(code) ? BaseCodeEnum.ERROR.getCode() : code)
+                .msg(StringUtils.isBlank(msg) ? BaseCodeEnum.ERROR.getDesc() : msg)
+                .build();
         log.info("ControllerExceptionHandler.buildResponse, response={}", JsonUtils.toJson(baseResponse));
         return baseResponse;
     }

@@ -1,7 +1,7 @@
 package com.liziczh.base.common.response;
 
 import com.liziczh.base.api.common.response.BaseResponse;
-import com.liziczh.base.common.enums.ResponseCodeEnum;
+import com.liziczh.base.common.enums.BaseCodeEnum;
 import lombok.Data;
 
 /**
@@ -13,7 +13,7 @@ import lombok.Data;
  * @date 2021/12/10 11:06 下午
  */
 @Data
-public class ResponseBuilder<T> {
+public class BaseResponseBuilder {
 
     /**
      * 通用操作成功
@@ -25,8 +25,8 @@ public class ResponseBuilder<T> {
      */
     public static <T> BaseResponse<T> success() {
         return new BaseResponse<T>()
-                .code(ResponseCodeEnum.SUCCESS.getCode())
-                .msg(ResponseCodeEnum.SUCCESS.getDesc());
+                .code(BaseCodeEnum.SUCCESS.getCode())
+                .msg(BaseCodeEnum.SUCCESS.getDesc());
     }
 
     /**
@@ -39,8 +39,8 @@ public class ResponseBuilder<T> {
      */
     public static <T> BaseResponse<T> success(T data) {
         return new BaseResponse<T>()
-                .code(ResponseCodeEnum.SUCCESS.getCode())
-                .msg(ResponseCodeEnum.SUCCESS.getDesc())
+                .code(BaseCodeEnum.SUCCESS.getCode())
+                .msg(BaseCodeEnum.SUCCESS.getDesc())
                 .data(data);
     }
 
@@ -54,8 +54,8 @@ public class ResponseBuilder<T> {
      */
     public static <T> BaseResponse<T> error() {
         return new BaseResponse<T>()
-                .code(ResponseCodeEnum.ERROR.getCode())
-                .msg(ResponseCodeEnum.ERROR.getDesc());
+                .code(BaseCodeEnum.ERROR.getCode())
+                .msg(BaseCodeEnum.ERROR.getDesc());
     }
 
     /**
@@ -66,7 +66,7 @@ public class ResponseBuilder<T> {
      * @author chenzhehao
      * @date 2022/1/16 9:47 下午
      */
-    public static <T> BaseResponse<T> error(ResponseCodeEnum codeCodeEnum) {
+    public static <T> BaseResponse<T> error(BaseCodeEnum codeCodeEnum) {
         return new BaseResponse<T>()
                 .code(codeCodeEnum.getCode())
                 .msg(codeCodeEnum.getDesc());
