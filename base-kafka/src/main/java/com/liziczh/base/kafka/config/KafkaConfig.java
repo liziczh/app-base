@@ -1,6 +1,12 @@
 package com.liziczh.base.kafka.config;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.AdminClientConfig;
@@ -10,11 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.KafkaAdmin;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * KafkaConfig
@@ -44,7 +46,8 @@ public class KafkaConfig {
         if (StringUtils.isNoneBlank(createTopics, partitionNum, replicationFactor)) {
             List<NewTopic> newTopics = new ArrayList<>();
             for (String topicName : createTopics.split(",")) {
-                newTopics.add(new NewTopic(topicName, Integer.parseInt(partitionNum), Short.parseShort(replicationFactor)));
+                newTopics.add(new NewTopic(topicName, Integer.parseInt(partitionNum),
+                        Short.parseShort(replicationFactor)));
             }
             AdminClient client = AdminClient.create(kafkaAdmin().getConfigurationProperties());
             client.createTopics(newTopics);
