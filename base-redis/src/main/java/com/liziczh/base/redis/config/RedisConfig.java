@@ -1,13 +1,13 @@
 package com.liziczh.base.redis.config;
 
+import java.io.Serializable;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-
-import java.io.Serializable;
 
 /**
  * RedisConfig
@@ -21,13 +21,15 @@ import java.io.Serializable;
 public class RedisConfig {
 
     @Bean(name = "redisTemplate")
-    public RedisTemplate<String, Serializable> redisCustomTemplate(RedisConnectionFactory redisConnectionFactory) {
+    public RedisTemplate<String, Serializable> redisCustomTemplate(LettuceConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Serializable> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
+        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
+        GenericJackson2JsonRedisSerializer jsonRedisSerializer = new GenericJackson2JsonRedisSerializer();
+        redisTemplate.setKeySerializer(stringRedisSerializer);
+        redisTemplate.setValueSerializer(jsonRedisSerializer);
+        redisTemplate.setHashKeySerializer(stringRedisSerializer);
+        redisTemplate.setHashValueSerializer(jsonRedisSerializer);
         return redisTemplate;
     }
 

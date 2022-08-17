@@ -1,11 +1,18 @@
 package com.liziczh.base.common.aop;
 
-import com.liziczh.base.common.util.JsonUtils;
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
+
+import com.liziczh.base.common.util.JsonUtils;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
@@ -53,7 +60,7 @@ public class ServiceLogAop {
         // 执行方法
         Object result = proceedingJoinPoint.proceed();
         // 打印出参
-        log.info("BsaeResponse Args  : {}", JsonUtils.toJson(result));
+        log.info("BaseResponse Args  : {}", JsonUtils.toJson(result));
         // 执行耗时
         log.info("Time-Consuming : {} ms", System.currentTimeMillis() - startTime);
         // 接口结束后换行，方便分割查看
@@ -78,7 +85,7 @@ public class ServiceLogAop {
                 joinPoint.getSignature().getName());
         // 打印方法返回值
         String returnValueJson = (returnValue == null) ? "null" : JsonUtils.toJson(returnValue);
-        log.info("Return Value   : {}", JsonUtils.toJson(returnValueJson));
+        log.info("Return Value   : {}", returnValueJson);
         // 接口返回结束
         log.info("========================================= Service Return =========================================");
     }
